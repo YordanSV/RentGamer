@@ -27,7 +27,6 @@ body {
   
   .nav-links {
     font-size: 0.9rem; /* Usa rem para un tamaño de fuente relativo */
-
     list-style: none;
     display: flex;
     gap: 20px;
