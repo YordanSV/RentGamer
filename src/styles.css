@@ -1,0 +1,86 @@
+/* src/styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700; /* Asegura que la fuente sea audaz */
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el contenedor */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra */
+    border-radius: 8px; /* Bordes redondeados */
+    color: white;
+  }
+  
+  .logo {
+    font-size: 100%;
+    font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+  }
+  
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-links li a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .nav-links li a:hover {
+    text-decoration: underline;
+  }
+  
+
+/* src/styles.css */
+.title {
+    text-align: left;
+    padding: 2% 0;
+  }
+  
+  .title h1 {
+    margin-left: 4%;
+    font-size: 400%;
+  }
+  
+  
+  /* src/styles.css */
+.cover-image {
+    text-align: center;
+    padding: 1% 0;
+  }
+  
+  .cover-image img {
+    max-width: 100%;
+    height: 60%;
+    width: 90%;
+    border-radius: 8px;
+    box-shadow: 0 0 1% rgba(0, 0, 0, 0.1);
+  }
+  
+
+  .info-section {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  
+  .info-section h2 {
+    font-size: 250%;
+    margin-bottom: 10px;
+  }
+  
+  .info-section h3 {
+    font-size: 150%;
+    margin-bottom: 20px;
+  }
+  
+  .info-section p {
+    font-size: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+  }
