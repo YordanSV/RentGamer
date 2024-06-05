@@ -20,12 +20,14 @@ body {
   }
   
   .logo {
+    padding-left: 40px;
     font-size: 0.8rem; /* Usa rem para un tamaño de fuente relativo */
     font-weight: bold;
     font-family: 'Press Start 2P', cursive;
   }
   
   .nav-links {
+    padding-right: 60px;
     font-size: 0.9rem; /* Usa rem para un tamaño de fuente relativo */
     list-style: none;
     display: flex;
@@ -111,7 +113,7 @@ body {
     }
   
     .info-section p {
-      font-size: 0.9rem; /* Ajusta el tamaño de fuente */
+      font-size: 0.8rem; /* Ajusta el tamaño de fuente */
       padding: 0 20px; /* Agrega padding lateral para mejor lectura */
     }
   }
