@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header className='header'>
         {/* <Logo /> */}
-        {/* <Nav /> */}
+        <Nav />
     </header>
   )
 }
