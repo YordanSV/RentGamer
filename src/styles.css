@@ -1,5 +1,7 @@
 /* src/styles.css */
 body {
+    background: linear-gradient(to bottom, #001f3f, #001020); /* Fondo azul oscuro con un gradiente */
+    color: rgb(252, 252, 252); /* Color de texto blanco para contraste */
     font-family: 'Poppins', sans-serif;
     font-weight: 700; /* Asegura que la fuente sea audaz */
     margin: 0; /* Elimina el margen por defecto */
