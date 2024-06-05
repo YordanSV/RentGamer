@@ -20,12 +20,14 @@ body {
   }
   
   .logo {
-    font-size: 1.2rem; /* Usa rem para un tamaño de fuente relativo */
+    font-size: 0.8rem; /* Usa rem para un tamaño de fuente relativo */
     font-weight: bold;
     font-family: 'Press Start 2P', cursive;
   }
   
   .nav-links {
+    font-size: 0.9rem; /* Usa rem para un tamaño de fuente relativo */
+
     list-style: none;
     display: flex;
     gap: 20px;
@@ -46,7 +48,7 @@ body {
   }
   
   .title h1 {
-    margin-left: 20px;
+    margin-left: 70px;
     font-size: 2.5rem; /* Usa rem para un tamaño de fuente relativo */
   }
   
