@@ -5,7 +5,8 @@ import Nav from './Nav'
 export default function Header() {
   return (
     <header className='header'>
-        <Logo />
+        RentGamer
+        {/* <Logo /> */}
         <Nav />
     </header>
   )
