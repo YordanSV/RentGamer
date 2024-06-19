@@ -46,7 +46,7 @@ body {
       justify-content: left;
     }
     .logo {
-      max-height: 30px; /* Ajuste del tamaño del logo para móviles */
+      max-height: 20px; /* Ajuste del tamaño del logo para móviles */
     }
   }
   .nav-links {
