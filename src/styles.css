@@ -38,20 +38,19 @@ body {
   }
   
   .logo {
-    max-height: 30px;
+    max-height: 35px;
   }
   
   @media (max-width: 500px) {
-    .header {
-      justify-content: left;
-    }
     .logo {
-      max-height: 20px; /* Ajuste del tamaño del logo para móviles */
+      padding-left: 10px; /* Ajusta el padding para móviles */
+      margin-left: 0; /* Asegúrate de que no haya margen adicional */
+      max-height: 30px; /* Ajuste del tamaño del logo para móviles */
     }
   }
   .nav-links {
     padding-right: 60px;
-    font-size: 0.9rem; /* Usa rem para un tamaño de fuente relativo */
+    font-size: 1.1rem; /* Usa rem para un tamaño de fuente relativo */
     list-style: none;
     display: flex;
     gap: 20px;
