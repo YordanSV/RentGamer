@@ -1,0 +1,58 @@
+.game-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 20px;
+  padding: 20px;
+  background-color: #000; /* Fondo negro */
+  color: white; /* Texto blanco */
+  max-width: 1200px; /* Ancho máximo */
+  margin: 0 auto; /* Centrar en la pantalla */
+}
+
+.image-container,
+.text-container {
+  display: flex;
+  flex-direction: column; /* Asegurar que el h2 está arriba del p */
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  text-align: center; /* Centrar el texto */
+}
+
+.game-image {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.text-container h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.text-container p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Adaptación para móviles */
+@media (max-width: 768px) {
+  .game-section {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .text-container {
+    padding: 10px;
+  }
+
+  .text-container h2 {
+    font-size: 20px;
+  }
+
+  .text-container p {
+    font-size: 14px;
+  }
+}

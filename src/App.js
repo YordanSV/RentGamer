@@ -4,6 +4,7 @@ import Header from './components/Header';
 import Title from './components/Title';
 import CoverImage from './components/CoverImage';
 import InfoSection from './components/InfoSection';
+import GameSection from './components/GameSection';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <Title/>
       <CoverImage />
       <InfoSection />
+      <GameSection />
     </div>
   );
 }
