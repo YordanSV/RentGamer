@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Logo() {
   return (
-    <h1 className='logo'>
-        RentGamer
-    </h1>
+    <a href="/" className="logo-link">
+      <img src="/logo.png" alt="#" className="logo" />
+    </a>
   )
 }

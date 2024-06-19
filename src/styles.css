@@ -19,7 +19,7 @@ body {
     color: white;
   }
   
-  .logo {
+  /* .logo {
     padding-left: 40px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -28,12 +28,27 @@ body {
   
   @media (max-width: 1px) {
     .logo {
-      padding-left: 10px; /* Ajusta el padding para móviles */
-      margin-left: 0; /* Asegúrate de que no haya margen adicional */
+      padding-left: 10px;
+      margin-left: 0; 
     }
+  } */
+  
+  .logo-link {
+    display: block;
   }
   
+  .logo {
+    max-height: 35px;
+  }
   
+  @media (max-width: 600px) {
+    .header {
+      justify-content: center;
+    }
+    .logo {
+      max-height: 35px; /* Ajuste del tamaño del logo para móviles */
+    }
+  }
   .nav-links {
     padding-right: 60px;
     font-size: 0.9rem; /* Usa rem para un tamaño de fuente relativo */
