@@ -187,7 +187,7 @@ body {
   
     .title h1 {
       font-size: 2rem; /* Ajusta el tamaño de fuente */
-      /* margin-left: 0; Centra el título */
+      margin-left: 0; /* Centra el título */
     }
   
     .info-section h2 {
