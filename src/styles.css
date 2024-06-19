@@ -38,7 +38,7 @@ body {
   }
   
   .logo {
-    max-height: 35px;
+    max-height: 30px;
   }
   
   @media (max-width: 500px) {
