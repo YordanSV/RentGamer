@@ -20,11 +20,19 @@ body {
   }
   
   .logo {
-    padding-left: 20px;
-    font-size: 0.8rem; /* Usa rem para un tamaño de fuente relativo */
+    padding-left: 40px;
+    font-size: 0.8rem;
     font-weight: bold;
     font-family: 'Press Start 2P', cursive;
   }
+  
+  @media (max-width: 768px) {
+    .logo {
+      padding-left: 10px; /* Ajusta el padding para móviles */
+      margin-left: 0; /* Asegúrate de que no haya margen adicional */
+    }
+  }
+  
   
   .nav-links {
     padding-right: 60px;
