@@ -18,6 +18,7 @@
   align-items: center;
   padding: 20px;
   text-align: center; /* Centrar el texto */
+  border-bottom: 2px solid rgb(243, 229, 229); /* Borde negro de 2px en la parte superior */
 }
 
 /* .game-image {
@@ -30,6 +31,7 @@
 /* Agrega este estilo a tu archivo CSS global o en un archivo CSS específico del componente */
 
 
+
 .text-container h2 {
   font-size: 24px;
   margin-bottom: 10px;
@@ -39,9 +41,20 @@
   font-size: 16px;
   line-height: 1.5;
 }
-
+.border-bottom{
+  border-bottom: 2px solid rgb(243, 229, 229); /* Borde negro de 2px en la parte superior */
+}
 /* Adaptación para móviles */
 @media (max-width: 768px) {
+  #border-bottom{
+    border-bottom: 2px solid rgb(243, 229, 229); /* Borde negro de 2px en la parte superior */
+  }
+  
+  .image-container,
+  .text-container {
+    border-bottom: none; /* Borde negro de 2px en la parte superior */
+  }
+
   .game-section {
     grid-template-columns: 1fr;
     grid-template-rows: auto;

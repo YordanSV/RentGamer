@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import styled, { keyframes } from 'styled-components';
+import './gameSection.css';
 
 // Definir el contenedor del slider y la imagen
 const SliderContainer = styled.div`
@@ -38,6 +39,11 @@ const SliderImage = styled.img`
   left: 0;
   opacity: 0;
   animation: ${props => (props.fade ? fadeIn : fadeOut)} 1s forwards;
+
+    @media (max-width: 1px) {
+    height: 1px; /* Permite que la altura se ajuste automáticamente */
+    max-height: 1vh; /* Limita la altura máxima de la imagen en dispositivos móviles */
+  }
 `;
 
 const Arrow = styled.div`
@@ -57,49 +63,49 @@ const Arrow = styled.div`
 `;
 
 const ImageSlider = ({ images }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [fade, setFade] = useState(true);
+    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+    const [fade, setFade] = useState(true);
 
-  const nextImage = useCallback(() => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrentImageIndex((currentImageIndex + 1) % images.length);
-      setFade(true);
-    }, 1000); // Duración de la animación
-  }, [currentImageIndex, images.length]);
+    const nextImage = useCallback(() => {
+        setFade(false);
+        setTimeout(() => {
+            setCurrentImageIndex((currentImageIndex + 1) % images.length);
+            setFade(true);
+        }, 1000); // Duración de la animación
+    }, [currentImageIndex, images.length]);
 
-  const prevImage = useCallback(() => {
-    setFade(false);
-    setTimeout(() => {
-      setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
-      setFade(true);
-    }, 1000); // Duración de la animación
-  }, [currentImageIndex, images.length]);
+    const prevImage = useCallback(() => {
+        setFade(false);
+        setTimeout(() => {
+            setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
+            setFade(true);
+        }, 1000); // Duración de la animación
+    }, [currentImageIndex, images.length]);
 
-  useEffect(() => {
-    const interval = setInterval(nextImage, 3000);
-    return () => clearInterval(interval);
-  }, [nextImage]);
+    useEffect(() => {
+        const interval = setInterval(nextImage, 3000);
+        return () => clearInterval(interval);
+    }, [nextImage]);
 
-  return (
-    <SliderContainer>
-      {images.map((image, index) => (
-        <SliderImage
-          key={index}
-          src={image}
-          alt="Sliding images"
-          fade={fade && currentImageIndex === index}
-          style={{ opacity: currentImageIndex === index ? 1 : 0 }}
-        />
-      ))}
-      <Arrow direction="left" onClick={prevImage}>
-        &#9664;
-      </Arrow>
-      <Arrow direction="right" onClick={nextImage}>
-        &#9654;
-      </Arrow>
-    </SliderContainer>
-  );
+    return (
+        <SliderContainer>
+            {images.map((image, index) => (
+                <SliderImage
+                    key={index}
+                    src={image}
+                    alt="Sliding images"
+                    fade={fade && currentImageIndex === index}
+                    style={{ opacity: currentImageIndex === index ? 1 : 0 }}
+                />
+            ))}
+            <Arrow direction="left" onClick={prevImage}>
+                &#9664;
+            </Arrow>
+            <Arrow direction="right" onClick={nextImage}>
+                &#9654;
+            </Arrow>
+        </SliderContainer>
+    );
 };
 
 export default ImageSlider;

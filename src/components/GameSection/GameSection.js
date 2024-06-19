@@ -1,5 +1,4 @@
 import React from 'react';
-import './gameSection.css';
 import ImageSlider from './ImageSliderPS5'
 const GameSection = () => {
   const images1 = [
@@ -14,8 +13,8 @@ const GameSection = () => {
 
   return (
     <div className="game-section">
-      <ImageSlider images={images1}/>
-      <div className="text-container">
+      <ImageSlider images={images2}/>
+      <div className="text-container" id="border-bottom">
         <h2>PlayStation 5</h2>
         <p>
           Uno de nuestros juegos más populares, ¡y por una buena razón! Este
@@ -34,7 +33,7 @@ const GameSection = () => {
           Xbox Game Pass. Ven y descubre Xbox Game Pass.
         </p>
       </div>
-      <ImageSlider images={images2}/>
+      <ImageSlider images={images1}/>
     </div>
   );
 };

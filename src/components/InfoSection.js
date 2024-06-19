@@ -4,7 +4,7 @@ import '../index.css';
 const InfoSection = () => {
   return (
     <div className="info-section">
-      <h2>Nuestro catálogo de videojuegos</h2>
+      {/* <h2>Nuestro catálogo de videojuegos</h2> */}
       <h3>Descubre lo que RentGamer tiene para ti</h3>
       <p>
         En RentGamer nos esforzamos por ser el mejor servicio de alquiler de videojuegos en todo el país. 

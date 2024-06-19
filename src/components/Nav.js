@@ -1,13 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 export default function Nav() {
-  return (
-    <nav>
-        <ul className='nav-links'>
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#reservation">Reserva online</a></li>
-            <li><a href="#plans">Planes y precios</a></li>        
-        </ul>
-    </nav>
-  )
+    const [isOpen, setIsOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+    };
+
+    return (
+        <nav className={isOpen ? 'nav-active' : ''}>
+            <div className="menu-toggle" onClick={toggleMenu}>
+                <div className={isOpen ? 'open' : ''}></div>
+                <div className={isOpen ? 'open' : ''}></div>
+                <div className={isOpen ? 'open' : ''}></div>
+            </div>
+            <ul className="nav-links">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#reservation">Reserva online</a></li>
+                <li><a href="#plans">Planes y precios</a></li>        
+            </ul>
+        </nav>
+    );
 }
