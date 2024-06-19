@@ -7,19 +7,19 @@ body {
     margin: 0; /* Elimina el margen por defecto */
     padding: 0; /* Elimina el padding por defecto */
   }
-  
+    /*
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px; /* Usa píxeles en lugar de porcentajes para un padding uniforme */
-    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el contenedor */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra */
-    border-radius: 8px; /* Bordes redondeados */
+    padding: 10px; /* Usa píxeles en lugar de porcentajes para un padding uniforme 
+    background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el contenedor 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra 
+    border-radius: 8px; /* Bordes redondeados 
     color: white;
   }
   
-  /* .logo {
+ .logo {
     padding-left: 40px;
     font-size: 0.8rem;
     font-weight: bold;
@@ -36,35 +36,65 @@ body {
   .logo-link {
     display: block;
   }
-  
-  .logo {
-    max-height: 35px;
+  /* Estilos generales para el header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px; /* Usa píxeles en lugar de porcentajes para un padding uniforme */
+  background: rgba(0, 0, 0, 0.5); /* Fondo semi-transparente para el contenedor */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Sombra */
+  border-radius: 8px; /* Bordes redondeados */
+  color: white;
+}
+
+.logo {
+  max-height: 50px; /* Ajusta el tamaño del logo según sea necesario */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding-right: 30px;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem; /* Ajusta el tamaño de fuente */
+}
+
+.nav-links li a:hover {
+  text-decoration: underline;
+}
+
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column; /* Apila los elementos verticalmente */
+    text-align: center;
   }
-  
-  @media (max-width: 500px) {
-    .logo {
-      padding-left: 10px; /* Ajusta el padding para móviles */
-      margin-left: 0; /* Asegúrate de que no haya margen adicional */
-      max-height: 30px; /* Ajuste del tamaño del logo para móviles */
-    }
-  }
+
   .nav-links {
-    padding-right: 60px;
-    font-size: 1.1rem; /* Usa rem para un tamaño de fuente relativo */
-    list-style: none;
-    display: flex;
-    gap: 20px;
+    flex-direction: column; /* Apila los enlaces de navegación verticalmente */
   }
-  
-  .nav-links li a {
-    color: white;
-    text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .logo {
+    padding-left: 10px; /* Ajusta el padding para móviles */
+    margin-left: 0; /* Asegúrate de que no haya margen adicional */
+    max-height: 30px; /* Ajuste del tamaño del logo para móviles */
   }
-  
-  .nav-links li a:hover {
-    text-decoration: underline;
+
+  .nav-links {
+    padding-right: 0;
+    font-size: 1rem; /* Ajusta el tamaño de la fuente para móviles */
   }
-  
+}
+
+
   .title {
     text-align: left;
     padding: 20px 0;
