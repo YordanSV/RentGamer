@@ -4,7 +4,7 @@
   grid-template-rows: auto auto;
   gap: 20px;
   padding: 20px;
-  background-color: #000; /* Fondo negro */
+  background-color: #05050527; /* Fondo negro */
   color: white; /* Texto blanco */
   max-width: 1200px; /* Ancho máximo */
   margin: 0 auto; /* Centrar en la pantalla */
@@ -20,12 +20,15 @@
   text-align: center; /* Centrar el texto */
 }
 
-.game-image {
+/* .game-image {
   width: 100%;
   max-width: 400px;
   height: auto;
   border-radius: 10px;
-}
+} */
+
+/* Agrega este estilo a tu archivo CSS global o en un archivo CSS específico del componente */
+
 
 .text-container h2 {
   font-size: 24px;
