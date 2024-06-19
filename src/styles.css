@@ -26,7 +26,7 @@ body {
     font-family: 'Press Start 2P', cursive;
   }
   
-  @media (max-width: 5px) {
+  @media (max-width: 1px) {
     .logo {
       padding-left: 10px; /* Ajusta el padding para móviles */
       margin-left: 0; /* Asegúrate de que no haya margen adicional */
