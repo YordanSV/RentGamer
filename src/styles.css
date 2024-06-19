@@ -28,7 +28,7 @@ body {
   
   @media (max-width: 768px) {
     .logo {
-      padding-left: -20px; /* Ajusta el padding para móviles */
+      padding-left: -20%; /* Ajusta el padding para móviles */
       margin-left: 0; /* Asegúrate de que no haya margen adicional */
     }
   }
