@@ -41,12 +41,12 @@ body {
     max-height: 35px;
   }
   
-  @media (max-width: 600px) {
+  @media (max-width: 500px) {
     .header {
-      justify-content: center;
+      justify-content: left;
     }
     .logo {
-      max-height: 35px; /* Ajuste del tamaño del logo para móviles */
+      max-height: 30px; /* Ajuste del tamaño del logo para móviles */
     }
   }
   .nav-links {
