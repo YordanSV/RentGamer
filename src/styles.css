@@ -186,10 +186,13 @@ body {
     }
   
     .title h1 {
-      font-size: 2rem; /* Ajusta el tamaño de fuente */
-      margin-left: 0; /* Centra el título */
+      font-size: 1.5rem; /* Ajusta el tamaño de fuente */
     }
   
+    .title {
+      margin-left: 0; /* Centra el título */
+    }
+
     .info-section h2 {
       font-size: 1.5rem; /* Ajusta el tamaño de fuente */
     }
