@@ -45,7 +45,7 @@
     }
   
     .footer p {
-      font-size: 12px;
+      font-size: 10px;
     }
   
     .footer-nav {
@@ -55,8 +55,8 @@
     }
   
     .footer-nav a {
-      margin: 0px 10px;
-      font-size: 12px;
+      margin: 5px auto;
+      font-size: 10px;
     }
   }
   
