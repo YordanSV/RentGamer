@@ -41,8 +41,8 @@ const Circle = styled.div`
 ;
 
   @media (max-width: 768px) {
-    width: 200px;
-    height: 200px;
+    width: 115px;
+    height: 115px;
   }
 `;
 

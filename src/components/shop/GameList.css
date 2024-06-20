@@ -33,7 +33,7 @@
 }
 
 .game-item {
-  flex: 0 0 calc(25% - 20px); /* Show 3 items per row, adjusting for padding */
+  flex: 0 0 calc(33.33% - 20px); /* Show 3 items per row, adjusting for padding */
   box-sizing: border-box;
   padding: 0 10px;
 }
@@ -73,9 +73,8 @@
 }
 
 @media (max-width: 768px) {
-
   .game-row {
-    flex-direction: column;
+    flex-direction: row;
   }
 
   .game-slider {
@@ -83,7 +82,7 @@
   }
 
   .game-item {
-    flex: 0 0 calc(70% - 0px); /* Show 1 item per row on mobile */
+    flex: 0 0 calc(100% - 20px); /* Show 1 item per row on mobile */
   }
 
   .prev-btn,
