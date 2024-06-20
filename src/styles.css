@@ -147,14 +147,14 @@ body {
   .cover-image img {
     max-width: 100%;
     height: auto; /* Asegura que la imagen mantenga su proporción */
-    width: 90%;
+    width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
   .info-section {
     text-align: center;
-    padding: 40px 20px;
+    padding: 100px 20px;
   }
   
   .info-section h2 {
@@ -169,7 +169,7 @@ body {
   
   .info-section p {
     font-size: 1rem; /* Usa rem para un tamaño de fuente relativo */
-    max-width: 800px;
+    max-width: 850px;
     margin: 0 auto;
   }
   
@@ -184,13 +184,17 @@ body {
       flex-direction: column; /* Apila los elementos verticalmente */
       gap: 10px;
     }
-  
     .title h1 {
       font-size: 1.5rem; /* Ajusta el tamaño de fuente */
     }
   
     .title {
+      padding: 0px 0px;
       margin-left: 0; /* Centra el título */
+    }
+
+    .info-section {
+      padding: 20px 16px;
     }
 
     .info-section h2 {
