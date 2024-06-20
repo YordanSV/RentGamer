@@ -15,8 +15,8 @@ export default function Nav() {
                 <div className={isOpen ? 'open' : ''}></div>
             </div>
             <ul className="nav-links">
-                <li><a href="#home">Inicio</a></li>
-                <li><a href="#store">Tienda</a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/shop">Tienda</a></li>
                 <li><a href="#reservation">Reserva online</a></li>
                 <li><a href="#plans">Planes y precios</a></li>        
             </ul>

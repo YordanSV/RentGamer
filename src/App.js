@@ -1,21 +1,23 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import Header from './components/Header/Header';
-import InfoSection from './components/InfoSection';
-import GameSection from './components/GameSection/GameSection';
-import CoverImage from './components/CoverImage';
 import Footer from './components/Footer/Footer';
-import CirclesSection from './components/CirclesSection';
+import HomePage from './pages/HomePage';
+import ShopPage from './pages/ShopPage';
 
 function App() {
   return (
-    <div className='App'>
+    <Router>
       <Header />
-      <CoverImage/>
-      <InfoSection />
-      <GameSection />
-      <CirclesSection />
-      <Footer/>
-    </div>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/shop" element={<ShopPage />} />
+        </Routes>
+      </main>
+      <Footer />
+    </Router>
   );
 }
 
