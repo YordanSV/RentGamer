@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import CategorySection from './CategorySection';
 import './GameList.css';
 
-const GameList = ({ games }) => {
+const GameList = ({ games, onAddToCart }) => {
   const groupedGames = games.reduce((groups, game) => {
     const category = game.category;
     if (!groups[category]) {
@@ -60,6 +60,7 @@ const GameList = ({ games }) => {
           currentIndex={category.currentIndex}
           nextGame={() => nextGame(categoryIndex)}
           prevGame={() => prevGame(categoryIndex)}
+          onAddToCart = {onAddToCart}
         />
       ))}
     </div>

@@ -1,9 +1,9 @@
 import React from 'react';
 import GameCard from './GameCard';
 import { useSwipeable } from 'react-swipeable';
-import './CategorySection.css';
+// import './CategorySection.css';
 
-const CategorySection = ({ category, games, currentIndex, nextGame, prevGame }) => {
+const CategorySection = ({ category, games, currentIndex, nextGame, prevGame, onAddToCart }) => {
   const handlers = useSwipeable({
     onSwipedLeft: () => nextGame(),
     onSwipedRight: () => prevGame(),
@@ -20,7 +20,7 @@ const CategorySection = ({ category, games, currentIndex, nextGame, prevGame }) 
           <div className="game-slider-inner" style={{ transform: `translateX(-${currentIndex * (100 / 3)}%)` }}>
             {games.concat(games.slice(0, 3)).map((game, gameIndex) => (
               <div key={game.id + gameIndex} className="game-item">
-                <GameCard game={game} />
+                <GameCard game={game} onAddToCart={onAddToCart}/>
               </div>
             ))}
           </div>

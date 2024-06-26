@@ -1,24 +1,23 @@
 export const games = [
-    { id: 1, name: "Juego 1", category: "Acción", image: "/imgGames/action1.png" },
-    { id: 2, name: "Juego 2", category: "Acción", image: "/imgGames/action2.png" },
-    { id: 3, name: "Juego 3", category: "Aventura", image: "/imgGames/adventure1.jpg" },
-    { id: 4, name: "Juego 4", category: "Acción", image: "/imgGames/action4.png" },
-    { id: 5, name: "Juego 5", category: "Acción" , image: "/imgGames/action5.png"},
-    { id: 6, name: "Juego 6", category: "Estrategia", image: "/imgGames/action6.jpg"},
-    { id: 7, name: "Juego 7", category: "Acción", image: "/imgGames/action3.png"},
-    { id: 8, name: "Juego 8", category: "Acción", image: "/imgGames/action6.jpg"},
-    { id: 9, name: "Juego 9", category: "Estrategia" },
-    { id: 10, name: "Juego 10", category: "Aventura", image: "/imgGames/adventure2.jpg" },
-    { id: 11, name: "Juego 11", category: "Acción", image: "/imgGames/action7.jpg" },
-    { id: 12, name: "Juego 12", category: "Acción", image: "/imgGames/action6.jpg" },
-    { id: 13, name: "Juego 13", category: "Acción", image: "/imgGames/action3.png" },
-    { id: 14, name: "Juego 14", category: "Aventura", image: "/imgGames/adventure1.jpg" },
-    { id: 15, name: "Juego 15", category: "Estrategia" },
-    { id: 16, name: "Juego 16", category: "Aventura" },
-    { id: 17, name: "Juego 17", category: "Acción", image: "/imgGames/action6.jpg" },
-    { id: 18, name: "Juego 18", category: "Acción", image: "/imgGames/action3.png" },
-    { id: 19, name: "Juego 19", category: "Aventura" },
-    { id: 20, name: "Juego 20", category: "Acción", image: "/imgGames/action4.png" }
-    // más juegos...
-  ];
-  
+  { id: 1, name: "Fuego Mortal", category: "Acción", price: 1000, image: "/imgGames/action1.png", description: '"En Fuego Mortal", los jugadores se sumergen en un mundo lleno de peligros y desafíos. Como valientes guerreros, deberán enfrentarse a hordas de enemigos, utilizar armas poderosas y dominar habilidades especiales para salvar al mundo de la destrucción. Con gráficos impresionantes y una jugabilidad intensa, este juego de acción te mantendrá al borde de tu asiento mientras luchas por la supervivencia. ¿Estás listo para enfrentar el fuego mortal?' },
+  { id: 2, name: "Guerreros Legendarios", category: "Acción", price: 1000, image: "/imgGames/action2.png", description: 'En "Guerreros Legendarios", los jugadores se embarcan en una épica aventura en un mundo lleno de magia y peligros. Eres un valiente guerrero elegido para enfrentar a las fuerzas del mal y restaurar el equilibrio en el reino. Lucha contra hordas de enemigos, desbloquea habilidades especiales y reúne poderosos artefactos mientras te abres camino a través de impresionantes paisajes y mazmorras desafiantes. Con gráficos asombrosos y una jugabilidad emocionante, "Guerreros Legendarios" te transporta a un mundo de fantasía lleno de acción y aventura. ¿Estás listo para convertirte en una leyenda?'},
+  { id: 3, name: "Juego 3", category: "Aventura", price: 1000, image: "/imgGames/adventure3.png" },
+  { id: 4, name: "Caos Total", category: "Acción", price: 1000, image: "/imgGames/action4.png", description: 'En "Caos Total", los jugadores se adentran en un mundo postapocalíptico donde la sociedad se ha desmoronado y el caos reina. Debes luchar por tu supervivencia en un entorno hostil lleno de pandillas violentas, criaturas mutantes y escasez de recursos. Explora un vasto mapa abierto, mejora tus habilidades de combate y construye alianzas estratégicas para enfrentar los desafíos que se presenten. ¿Estás listo para enfrentar el caos y reclamar tu lugar en este nuevo mundo?' },
+  { id: 5, name: "Cazadores de Sombras", category: "Acción", price: 1000, image: "/imgGames/action5.png", description: 'En "Cazadores de Sombras", los jugadores se convierten en valientes guerreros que se enfrentan a criaturas sobrenaturales que acechan en la oscuridad. Armados con armas místicas y habilidades especiales, tu misión es proteger a la humanidad de las fuerzas del mal. Explora un mundo lleno de misterio y peligro, desentraña antiguos secretos y enfréntate a jefes poderosos en épicas batallas.Con gráficos impresionantes y una jugabilidad emocionante, "Cazadores de Sombras" te sumerge en una aventura llena de acción y fantasía. ¿Estás listo para convertirte en un cazador de sombras y luchar contra las fuerzas de la oscuridad?' },
+  { id: 6, name: "Juego 6", category: "Estrategia", price: 1000, image: "/imgGames/strategy1.png" },
+  { id: 7, name: "Infiltración Extrema", category: "Acción", price: 1000, image: "/imgGames/action3.png", description: 'En "Infiltración Extrema", los jugadores se convierten en agentes de élite entrenados para llevar a cabo misiones secretas y peligrosas. Tu misión es infiltrarte en instalaciones enemigas altamente fortificadas, evitando las patrullas y los sistemas de seguridad de alta tecnología, "Infiltración Extrema" te sumerge en el mundo del espionaje y la acción encubierta. ¿Estás preparado para el desafío?'},
+  { id: 8, name: "Vanguardia cibernética", category: "Acción", price: 1000, image: "/imgGames/action8.png", description: 'En "Cyber Vanguard", los jugadores se sumergen en un mundo futurista donde la tecnología ha avanzado a niveles extraordinarios. Eres un agente de élite equipado con implantes cibernéticos y armamento de vanguardia. Tu misión es enfrentarte a corporaciones corruptas y grupos rebeldes mientras desentrañas una conspiración que amenaza con sumir al mundo en el caos. Utiliza tus habilidades mejoradas, combate cuerpo a cuerpo y armas futuristas para superar desafíos y desbloquear nuevos poderes. Con gráficos de última generación y una jugabilidad frenética, "Cyber Vanguard" te transporta a un futuro distópico lleno de acción y tecnología avanzada. ¿Estás listo para convertirte en el protector de la humanidad en el mundo cibernético?' },
+  { id: 9, name: "Juego 9", category: "Estrategia", price: 1000, image: "/imgGames/adventure4.png" },
+  { id: 10, name: "Juego 10", category: "Aventura", price: 1000, image: "/imgGames/adventure2.jpg" },
+  { id: 11, name: "Destrucción Total", category: "Acción", price: 1000, image: "/imgGames/action7.jpg", description: ' En "Destrucción Total", los jugadores se sumergen en un mundo devastado por la guerra y el caos. Eres un soldado de élite que debe luchar contra enemigos implacables y destruir todo a tu paso para restaurar la paz. Utiliza armas de fuego poderosas, explosivos y vehículos de combate para abrirte camino a través de escenarios destructibles y desafiantes. Con gráficos realistas y una jugabilidad intensa, "Destrucción Total" te ofrece una experiencia de acción frenética y llena de adrenalina. ¿Estás preparado para enfrentar la destrucción y convertirte en el héroe que el mundo necesita?' },
+  { id: 12, name: "Asalto neotecnológico", category: "Acción", price: 1000, image: "/imgGames/action9.png", description: 'En "NeoTech Assault", los jugadores se adentran en un mundo distópico donde las megacorporaciones controlan la sociedad y la tecnología avanzada está en todas partes. Eres parte de un equipo de resistencia que lucha contra el dominio de las corporaciones y busca restaurar la libertad. Utiliza armas de alta tecnología, trajes de combate mejorados y habilidades especiales para enfrentarte a enemigos poderosos y superar desafíos estratégicos. Explora entornos futuristas, hackea sistemas de seguridad y descubre secretos ocultos mientras te abres paso hacia la victoria. Con gráficos asombrosos y una jugabilidad emocionante, "NeoTech Assault" te sumerge en un mundo de acción y rebelión tecnológica. ¿Estás listo para desafiar el poder de las corporaciones y convertirte en el héroe del futuro?'},
+  { id: 13, name: "Velocidad Extrema", category: "Acción", price: 1000, image: "/imgGames/action6.jpg", description: 'En "Velocidad Extrema", los jugadores se sumergen en la emoción de las carreras callejeras ilegales. Conduce a toda velocidad por calles urbanas, esquivando el tráfico y desafiando a otros corredores expertos. Personaliza y mejora tu vehículo para obtener el máximo rendimiento y dominar las curvas cerradas y los saltos espectaculares. Compite en una variedad de modos de juego, desde carreras individuales hasta desafíos de tiempo y carreras de eliminación. Con gráficos realistas y una física de conducción precisa, "Velocidad Extrema" te ofrece una experiencia de carreras llena de adrenalina. ¿Estás listo para pisar a fondo el acelerador y convertirte en el rey de la velocidad?' },
+  { id: 14, name: "Juego 14", category: "Aventura", price: 1000, image: "/imgGames/adventure4.png" },
+  { id: 15, name: "Juego 15", category: "Estrategia", price: 1000, image: "/imgGames/adventure4.png"},
+  { id: 16, name: "Juego 16", category: "Aventura", price: 1000, image: "/imgGames/adventure3.jpg" },
+  { id: 17, name: "Juego 17", category: "Acción", price: 1000, image: "/imgGames/action6.jpg" },
+  { id: 18, name: "Juego 18", category: "Acción", price: 1000, image: "/imgGames/action3.png" },
+  { id: 19, name: "Juego 19", category: "Aventura", price: 1000, image: "/imgGames/adventure4.png" },
+  { id: 20, name: "Juego 20", category: "Acción", price: 1000, image: "/imgGames/action4.png" }
+  // más juegos...
+];
