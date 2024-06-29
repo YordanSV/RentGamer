@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Slider from 'react-slick';
 import GameCard from './GameCard';
 
-const CarouselContainer = styled.div`
-  width: 80%;
-  margin: auto;
-  margin-bottom: 40px;
-`;
+// const CarouselContainer = styled.div`
+//   width: 80%;
+//   margin: auto;
+//   margin-bottom: 40px;
+// `;
 
 const settings = {
   dots: true,
