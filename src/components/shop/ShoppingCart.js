@@ -86,7 +86,7 @@ const CheckoutButton = styled.button`
 
 const ShoppingCart = ({ items, onCheckout }) => {
     const amount = items.length;
-    const total = items.reduce((acc, item) => acc = item.price,0)
+    const total = items.reduce((acc, item) => acc + item.price,0)
     return (
         <CartContainer>
             <CartHeader>Carrito de Compras</CartHeader>
@@ -102,7 +102,7 @@ const ShoppingCart = ({ items, onCheckout }) => {
             </Total>
             <Total>
                 <span>Cantidad:</span>
-                <span>{amount.toFixed(2)}</span>
+                <span>{amount}</span>
             </Total>
             <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
         </CartContainer>
