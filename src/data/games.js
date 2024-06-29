@@ -18,6 +18,6 @@ export const games = [
   { id: 17, name: "Juego 17", category: "Acción", price: 1000, image: "/imgGames/action6.jpg" },
   { id: 18, name: "Juego 18", category: "Acción", price: 1000, image: "/imgGames/action3.png" },
   { id: 19, name: "Juego 19", category: "Aventura", price: 1000, image: "/imgGames/adventure4.png" },
-  { id: 20, name: "Juego 20", category: "Acción", price: 1000, image: "/imgGames/action4.png" }
+  { id: 20, name: "Ultimo", category: "Acción", price: 1000, image: "/imgGames/action4.png" }
   // más juegos...
 ];

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Card = styled.div`
   background: #001020;
@@ -13,11 +14,15 @@ const Card = styled.div`
   &:hover {
     transform: scale(1.05);
   }
+
+  @media (max-width: 768px) {
+    width: 200px;
+  }
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 200px;
+  height: 100%;
   overflow: hidden;
 `;
 
@@ -44,6 +49,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin: 5px;
 
   &:hover {
     background-color: #0056b3;
@@ -51,9 +57,6 @@ const Button = styled.button`
 `;
 
 const GameCard = ({ game, onAddToCart }) => {
-  const getKey= (key) => {
-    onAddToCart(key)
-  }
   return (
     <Card>
       <ImageContainer>
@@ -61,21 +64,13 @@ const GameCard = ({ game, onAddToCart }) => {
       </ImageContainer>
       <Content>
         <Title>{game.name}</Title>
-        <Button onClick={() => getKey(game.id)}>Agregar al carrito</Button>
+        <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
+        <Link to={`/shop/game/${game.id}`}>
+          <Button>Ver detalles</Button>
+        </Link>
       </Content>
     </Card>
   );
 };
 
 export default GameCard;
-
-// const GameCard = ({ game }) => {
-//   return (
-//     <div className="game-card">
-//       <img src={game.image} alt={game.name} />
-//       <p>{game.name}</p>
-//     </div>
-//   );
-// };
-
-// export default GameCard;

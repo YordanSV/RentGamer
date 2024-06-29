@@ -1,7 +1,10 @@
 import React, {useState} from 'react';
 import { games } from '../data/games';
-import GameList from '../components/shop/GameList';
+// import {GameCarousel} from '../components/shop/GameCard';
 import ShoppingCart from '../components/shop/ShoppingCart';
+import CategoryCarousel from '../components/shop/CategoryCarousel';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 // import './ShopPage.css'; // Si tienes estilos específicos para ShopPage
 
@@ -22,9 +25,9 @@ const ShopPage = () => {
 
   return (
     <div className="shop-container">
-      <ShoppingCart items={cartItems} onCheckout={handleCheckout} /> 
       <h1>Nuestra Tienda</h1>
-      <GameList games={games} onAddToCart={handleAddToCart} />
+      <ShoppingCart items={cartItems} onCheckout={handleCheckout} /> 
+      <CategoryCarousel games={games} onAddToCart={handleAddToCart} />
     </div>
   );
 };
