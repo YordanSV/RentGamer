@@ -4,48 +4,67 @@
 }
 
 .shopping-cart {
-  position: fixed; /* Fija el carrito en la ventana */
+  position: fixed;
   top: 41px;
-  right: -500px; /* Ajusta este valor según el ancho de tu carrito */
+  right: -500px;
   transition: right 0.3s ease;
-  height: 100vh; /* Hace que el carrito ocupe toda la altura de la ventana */
-  overflow-y: auto; /* Permite el desplazamiento dentro del carrito */
-  z-index: 1001; /* Asegúrate de que el carrito esté por encima de otros elementos */
-  background: rgba(0, 0, 0, 0.8); /* Fondo semitransparente */
+  height: 100vh;
+  overflow-y: auto;
+  z-index: 1001;
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .shopping-cart.visible {
   right: 0;
 }
 
-.cart-icon {
-  position: fixed;  /* Fija el botón en la ventana */
-  top: 80px;        /* Ajusta la distancia desde la parte superior */
-  right: 20px;      /* Ajusta la distancia desde el lado derecho */
+.cart-icon-container {
+  position: fixed;
+  top: 80px;
+  left: 95%;
   cursor: pointer;
-  z-index: 1002;    /* Asegúrate de que el icono esté por encima del carrito */
-  background-color: #007bff; /* Añade un color de fondo */
-  color: white;     /* Color del texto */
-  border: none;     /* Sin borde */
-  border-radius: 50%; /* Forma redonda */
-  width: 50px;      /* Ancho del botón */
-  height: 50px;     /* Altura del botón */
+  z-index: 1002;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5em;
 
   @media (max-width: 768px) {
-    top: 65px;        /* Ajusta la distancia desde la parte superior */
-    right: 5px;      /* Ajusta la distancia desde el lado derecho */
+    top: 90px;
+    left: 87%;
+    width: 45px;
+    height: 45px;
   }
 }
 
-
-
-  h1{
-    text-align: center; /* Centro horizontal */
+.cart-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8em;
 }
 
+@media (max-width: 768px) {
+  .cart-icon-container {
+    top: 65px;
+    right: 5px;
+  }
+}
 
-
+h1 {
+  text-align: center;
+}
