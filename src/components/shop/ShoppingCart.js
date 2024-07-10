@@ -1,4 +1,3 @@
-// ShoppingCart.js
 import React from 'react';
 import styled from 'styled-components';
 
@@ -11,9 +10,9 @@ const CartContainer = styled.div`
   margin: 20px auto;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     padding: 10px;
-    margin: 10px 0;
+    margin: 10px 10;
   }
 `;
 
@@ -33,6 +32,10 @@ const CartItem = styled.div`
   padding: 10px 0;
   border-bottom: 1px solid #ddd;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   &:last-child {
     border-bottom: none;
   }
@@ -40,6 +43,7 @@ const CartItem = styled.div`
 
 const ItemName = styled.span`
   font-size: 1em;
+  width: 30%;
 
   @media (max-width: 768px) {
     font-size: 0.9em;
@@ -47,8 +51,10 @@ const ItemName = styled.span`
 `;
 
 const ItemPrice = styled.span`
+  width: 30%;
+  margin-right: 10%;
   font-size: 1em;
-
+  align-items: center; /* Alinea verticalmente los componentes al centro */
   @media (max-width: 768px) {
     font-size: 0.9em;
   }
@@ -84,16 +90,39 @@ const CheckoutButton = styled.button`
   }
 `;
 
-const ShoppingCart = ({ items, onCheckout }) => {
+const RemoveButton = styled.button`
+  width: 20%;
+  padding: 10px;
+  font-size: 1em;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+`;
+
+const ShoppingCart = ({ className, items, onCheckout, onRemoveToCart }) => {
     const amount = items.length;
-    const total = items.reduce((acc, item) => acc + item.price,0)
+    const total = items.reduce((acc, item) => acc + item.price, 0);
+
     return (
-        <CartContainer>
+        <CartContainer className={className}>
             <CartHeader>Carrito de Compras</CartHeader>
             {items.map((item, index) => (
                 <CartItem key={index}>
                     <ItemName>{item.name}</ItemName>
                     <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
+                    <RemoveButton onClick={() => onRemoveToCart(item.id)}>Eliminar</RemoveButton>
                 </CartItem>
             ))}
             <Total>

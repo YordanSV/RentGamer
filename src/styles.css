@@ -7,7 +7,6 @@ body {
     margin: 0; /* Elimina el margen por defecto */
     padding: 0; /* Elimina el padding por defecto */
     padding-top: 70px; /* Ajustar el padding para que el contenido no se solape con el header */
-
   }
   
   .header {
@@ -118,10 +117,20 @@ body {
 }
 
 @media (max-width: 768px) {
+  .nav{
+    width: 1000px;
+  }
     .nav-links {
         display: none; /* Ocultar el menú de navegación en pantallas pequeñas */
+        padding-left: 28%;
+        padding-right: 50%;
+        left: 0px;
+        right: 0px;
+        text-align: center; /* Centro horizontal */
     }
-
+    .nav-links li{
+      margin: 10px;
+    }
     .menu-toggle {
         display: block; /* Mostrar el icono de hamburguesa en pantallas pequeñas */
         margin-right: 20px; /* Espacio desde el borde derecho */
@@ -135,7 +144,7 @@ body {
   }
   
   .title h1 {
-    margin-left: 70px;
+    text-align: center; /* Centro horizontal */
     font-size: 2.5rem; /* Usa rem para un tamaño de fuente relativo */
   }
   

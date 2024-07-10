@@ -8,7 +8,7 @@ const Card = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s;
-  width: 300px;
+  width: 400px;
   margin: 20px;
 
   &:hover {
@@ -16,7 +16,9 @@ const Card = styled.div`
   }
 
   @media (max-width: 768px) {
-    width: 200px;
+    width: 80%;
+    padding: 10px;
+    margin: 10px 10;
   }
 `;
 

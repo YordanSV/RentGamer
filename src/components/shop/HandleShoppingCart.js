@@ -1,7 +1,9 @@
 // import React, { useState } from 'react';
 // import { games } from "../../data/games";
 // import ShoppingCart from './ShoppingCart';
-// import GameCard from './GameCard';
+// import CategoryCarousel from './CategoryCarousel';
+// import "slick-carousel/slick/slick.css"; 
+// import "slick-carousel/slick/slick-theme.css";
 
 // const HandleShoppingCart = () => {
 //     const [cartItems, setCartItems] = useState([]);
@@ -18,12 +20,18 @@
 //         console.log('Se ha pagado')
 //     }
   
+//     const handleRemoveToCart = (key) => {
+//         const SetCart = games.filter(game => game.id !== key)
+//         setCartItems(SetCart)
+//     }
     
 //     return (
 //         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
-//             <ShoppingCart items={cartItems} onCheckout={handleCheckout } onAddToCart={onAddToCart} /> 
+//             {/* <ShoppingCart items={cartItems} onCheckout={handleCheckout} onRemoveToCart={handleRemoveToCart}/>  */}
+//             {/* <CategoryCarousel games={games} onAddToCart={handleAddToCart} /> */}
 //       </div>
 //     )
 // }
 
 // export default HandleShoppingCart
+
