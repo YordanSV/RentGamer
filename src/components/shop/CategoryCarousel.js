@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import GameCarousel from './GameCarousel';
 
 const CarouselContainer = styled.div`
-  width: 80%;
+  width: 87%;
   margin: auto;
   margin-bottom: 40px;
 `;

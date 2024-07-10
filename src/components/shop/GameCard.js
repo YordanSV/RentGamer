@@ -10,6 +10,7 @@ const Card = styled.div`
   transition: transform 0.2s;
   width: 400px;
   margin: 20px;
+  padding: 10px;
 
   &:hover {
     transform: scale(1.05);
@@ -17,7 +18,6 @@ const Card = styled.div`
 
   @media (max-width: 768px) {
     width: 80%;
-    padding: 10px;
     margin: 10px 10;
   }
 `;
@@ -35,7 +35,7 @@ const Image = styled.img`
 `;
 
 const Content = styled.div`
-  padding: 15px;
+  padding: 20px;
 `;
 
 const Title = styled.h2`
