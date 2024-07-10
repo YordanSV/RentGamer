@@ -40,12 +40,12 @@ const ShopPage = () => {
           <span className="cart-count">{cartItems.length}</span>
         )}
       </div>
-      <ShoppingCart 
+      {/* <ShoppingCart 
         className={isCartVisible ? 'shopping-cart visible' : 'shopping-cart'} 
         items={cartItems} 
         onCheckout={handleCheckout} 
         onRemoveToCart={handleRemoveToCart}
-      />
+      /> */}
       <CategoryCarousel games={games} onAddToCart={handleAddToCart} />
     </div>
   );
