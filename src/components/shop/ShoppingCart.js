@@ -91,8 +91,8 @@ const CheckoutButton = styled.button`
 `;
 
 const RemoveButton = styled.button`
-  width: 20%;
-  padding: 10px;
+  width: 30%;
+  padding: 20px;
   font-size: 1em;
   color: white;
   background-color: #007bff;

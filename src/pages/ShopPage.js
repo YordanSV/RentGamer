@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { games } from '../data/games';
 import ShoppingCart from '../components/shop/ShoppingCart';
 import CategoryCarousel from '../components/shop/CategoryCarousel';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import './shopPage.css';
 
 const ShopPage = () => {
