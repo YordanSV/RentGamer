@@ -1,12 +1,5 @@
 /* src/styles.css */
 
-/* CSS Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 
 body {
     background: linear-gradient(to bottom, #001f3f, #001020); /* Fondo azul oscuro con un gradiente */
@@ -16,8 +9,6 @@ body {
     margin: 0; /* Elimina el margen por defecto */
     padding: 0; /* Elimina el padding por defecto */
     padding-top: 70px; /* Ajustar el padding para que el contenido no se solape con el header */
-    transform: translateZ(0);
-    backface-visibility: hidden;
   }
   
   .header {

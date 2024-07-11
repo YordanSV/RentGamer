@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import Modal from './Modal';
 
 const Card = styled.div`
   background: #001020;
@@ -18,7 +18,7 @@ const Card = styled.div`
 
   @media (max-width: 768px) {
     width: 80%;
-    margin: 10px 10;
+    margin: 10px 10px;
   }
 `;
 
@@ -41,6 +41,18 @@ const Content = styled.div`
 const Title = styled.h2`
   font-size: 1.2em;
   margin: 0 0 10px;
+  text-align: center;
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 10px; /* Espacio entre los botones */
+  margin-top: 10px;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const Button = styled.button`
@@ -51,27 +63,41 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin: 5px;
+  flex: 1;
 
   &:hover {
     background-color: #0056b3;
   }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 5px 0;
+  }
 `;
 
 const GameCard = ({ game, onAddToCart }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
   return (
-    <Card>
-      <ImageContainer>
-        <Image src={game.image} alt={game.name} />
-      </ImageContainer>
-      <Content>
-        <Title>{game.name}</Title>
-        <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
-        <Link to={`/shop/game/${game.id}`}>
-          <Button>Ver detalles</Button>
-        </Link>
-      </Content>
-    </Card>
+    <>
+      <Card>
+        <ImageContainer>
+          <Image src={game.image} alt={game.name} />
+        </ImageContainer>
+        <Content>
+          <Title>{game.name}</Title>
+          <Title>{`$${game.price}`}</Title>
+          <ButtonContainer>
+            <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
+            <Button onClick={handleOpenModal}>Ver detalles</Button>
+          </ButtonContainer>
+        </Content>
+      </Card>
+      {isModalOpen && <Modal game={game} onClose={handleCloseModal} />}
+    </>
   );
 };
 
