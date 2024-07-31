@@ -3,4 +3,3 @@
   to = "/index.html"
   status = 200
 
-REACT_APP_API_URL=https://your-app-name.herokuapp.com/api
