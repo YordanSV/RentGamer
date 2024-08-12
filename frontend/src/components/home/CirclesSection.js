@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 // Define styled components
 const Section = styled.section`
@@ -79,7 +80,26 @@ const Button = styled.button`
   }
 `;
 
+
+
 const CirclesSection = () => {
+  const [data, setData] = useState('')
+
+  function handleClick() {
+    console.log('linea 89')
+
+    axios.get('https://my-backend.railway.app/select')
+      .then(Response => {
+        console.log('linea 93')
+        setData(Response.data)
+        console.log(setData)
+        console.log(Response)
+      })
+      .catch(error => {
+        console.error('Error Fetching data: ', error);
+      })
+  }
+
   return (
     <Section>
       <Row>
@@ -87,8 +107,8 @@ const CirclesSection = () => {
           <Circle>
             <Image src="/rent.png" alt="Imagen 1" />
           </Circle>
-          <Title>Reserva</Title>
-          <Button>Saber más</Button>
+          <Title>{data} Reserva</Title>
+          <Button onClick={handleClick}>Saber más</Button>
         </CircleContainer>
         <CircleContainer>
           <Circle>
