@@ -8,7 +8,7 @@ const port = process.env.PORT || 3001;
 
 // Configurar CORS
 app.use(cors({
-  origin: 'http://localhost:3000', // Reemplaza con la URL de tu frontend
+  origin: 'https://rentgamer.netlify.app', // Reemplaza con la URL de tu frontend
 }));
 
 // Analizar la DATABASE_URL

@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     // Hacer la solicitud GET al backend
-    fetch('http://localhost:3001/select')
+    fetch('https://rentgamer.netlify.app')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error fetching data:', error));
