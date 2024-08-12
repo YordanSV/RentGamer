@@ -6,13 +6,15 @@ const cors = require('cors'); // Importar cors
 const app = express();
 const port = process.env.PORT || 3001;
 
-// Configurar CORS
-app.use(cors({
-  origin: 'https://rentgamer.netlify.app', // Reemplaza con la URL de tu frontend
-}));
 
 // Analizar la DATABASE_URL
 const dbUrl = new URL(process.env.DATABASE_URL);
+
+// Configurar CORS
+app.use(cors({
+  origin: dbUrl, // Reemplaza con la URL de tu frontend
+}));
+
 function ejecutar() {
   console.log(dbUrl, dbUrl.hostname, dbUrl.username, dbUrl.password, dbUrl.port, dbUrl.pathname.slice(1))  
 }

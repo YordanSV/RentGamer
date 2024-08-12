@@ -16,7 +16,7 @@ function App() {
 
   useEffect(() => {
     // Hacer la solicitud GET al backend
-    fetch('https://rentgamer.netlify.app/select')
+    fetch('mysql://root:ggyLmqtrGycQxxbMvJPsreRqkOmxdExY@monorail.proxy.rlwy.net:11761/railway/select')
       .then(response => response.json())
       .then(data => setData(data))
       .catch(error => console.error('Error fetching data:', error));
