@@ -4,28 +4,29 @@ const express = require('express');
 const mysql = require('mysql2');
 const cors = require('cors'); // Importar cors
 const app = express();
-const port = process.env.PORT || 3001;
-
-
-// Analizar la DATABASE_URL
 const dbUrl = new URL(process.env.DATABASE_URL);
+
+const port = process.env.PORT || 3001;
 
 // Configurar CORS
 app.use(cors({
-  origin: dbUrl, // Reemplaza con la URL de tu frontend
+  origin: 'https://rentgamer.netlify.app', // Reemplaza con la URL de tu frontend
+  // origin: 'http://localhost:3000',
 }));
 
+
+const connection = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT,
+});
+
 function ejecutar() {
-  console.log(dbUrl, dbUrl.hostname, dbUrl.username, dbUrl.password, dbUrl.port, dbUrl.pathname.slice(1))  
+  console.log(dbUrl, dbUrl.hostname, dbUrl.username, dbUrl.password, process.env.DB_PORT, dbUrl.pathname.slice(1))  
 }
 ejecutar()
-const connection = mysql.createConnection({
-  host: dbUrl.hostname,
-  user: dbUrl.username,
-  password: dbUrl.password,
-  database: dbUrl.pathname.slice(1), // Remover la primera barra "/"
-  port: dbUrl.port
-});
 
 connection.connect((err) => {
   if (err) {
@@ -37,6 +38,7 @@ connection.connect((err) => {
 
 // Ruta para realizar una consulta SELECT
 app.get('/select', (req, res) => {
+  console.log('Pasoo')
   const query = 'SELECT name FROM users'; // Reemplaza 'tu_tabla' por el nombre de tu tabla
 
   connection.query(query, (err, results, fields) => {

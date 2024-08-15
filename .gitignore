@@ -7,8 +7,8 @@ node_modules/
 
 # Environment variables
 .env
-backend/.env
-frontend/.env
+/backend/.env
+/frontend/.env
 
 # Vercel deployment files
 .vercel
