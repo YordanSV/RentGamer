@@ -1,32 +1,24 @@
-
-require('dotenv').config(); // Cargar variables de entorno desde .env
+require('dotenv').config(); // Cargar variables de entorno desde .env si estás en desarrollo
 const express = require('express');
 const mysql = require('mysql2');
-const cors = require('cors'); // Importar cors
+const cors = require('cors');
 const app = express();
-const dbUrl = new URL(process.env.DATABASE_URL);
 
 const port = process.env.PORT || 3001;
 
-// Configurar CORS
+// Configurar CORS para tu frontend
 app.use(cors({
-  origin: 'https://rentgamer.netlify.app', // Reemplaza con la URL de tu frontend
-  // origin: 'http://localhost:3000',
+  origin: 'https://rentgamer.netlify.app', // Cambia según dónde esté tu frontend
 }));
 
-
+// Configurar la conexión MySQL usando las variables proporcionadas por Railway
 const connection = mysql.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
-  port: process.env.DB_PORT,
+  host: process.env.MYSQLHOST || '127.0.0.1', // Host de la base de datos
+  user: process.env.MYSQLUSER, // Usuario de la base de datos
+  password: process.env.MYSQLPASSWORD, // Contraseña de la base de datos
+  database: process.env.MYSQLDATABASE, // Nombre de la base de datos
+  port: process.env.MYSQLPORT || 3306, // Puerto de la base de datos
 });
-
-function ejecutar() {
-  console.log(dbUrl, dbUrl.hostname, dbUrl.username, dbUrl.password, process.env.DB_PORT, dbUrl.pathname.slice(1))  
-}
-ejecutar()
 
 connection.connect((err) => {
   if (err) {
@@ -38,10 +30,9 @@ connection.connect((err) => {
 
 // Ruta para realizar una consulta SELECT
 app.get('/select', (req, res) => {
-  console.log('Pasoo')
-  const query = 'SELECT name FROM users'; // Reemplaza 'tu_tabla' por el nombre de tu tabla
+  const query = 'SELECT name FROM users'; // Reemplaza 'users' por tu tabla
 
-  connection.query(query, (err, results, fields) => {
+  connection.query(query, (err, results) => {
     if (err) {
       console.error('Error executing query:', err.stack);
       res.status(500).send('Error executing query');
