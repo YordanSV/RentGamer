@@ -7,7 +7,7 @@ const GameSection = () => {
   ];
 
   const images2 = [
-    'game3.png',
+    // 'game3.png'
     'game4.png'
   ];
 

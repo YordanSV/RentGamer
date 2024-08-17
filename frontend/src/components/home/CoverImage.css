@@ -1,0 +1,100 @@
+.cover-image {
+    position: relative;
+    text-align: center;
+    color: white;
+    padding-top: 0px; /* Este valor debe ser igual a la altura del header */
+  }
+  
+  .cover-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  .text-content {
+    position: absolute;
+    top: 70%;
+    left: 28%;
+    transform: translate(-50%, -50%);
+    text-align: left; /* Cambiar alineación del texto a la izquierda */
+    padding: 20px;
+    /* background-color: rgba(0, 0, 0, 0.4); Fondo negro semi-transparente */
+    border-radius: 15px; /* Bordes redondeados */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinea los elementos a la izquierda */
+  }
+  
+  .animated-title {
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 2s forwards;
+    font-size: 3.5rem;
+  }
+  
+  .subtitle {
+    font-size: 2.3rem;
+    margin: 10px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 2s 0.5s forwards;
+  }
+  
+  .learn-more-button {
+    border: 2px solid #007bff;
+    background-color: transparent;
+    color: #007bff;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 2s 1s forwards;
+    border-radius: 25px; /* Borde redondeado */
+    align-self: flex-start; /* Alinea el botón a la izquierda */
+  }
+  
+  .learn-more-button:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Estilos para dispositivos móviles */
+  @media (max-width: 768px) {
+      
+  .learn-more-button {
+    display: none;
+  }
+    .animated-title {
+      font-size: 1rem;
+    }
+  
+    .subtitle {
+      font-size: 0.5rem;
+      margin: 0;
+    }
+  
+    .learn-more-button {
+      padding: 4px 8px;
+      font-size: 0.5rem;
+    }
+  
+    .text-content {
+      top: 70%;
+      left: 28%;
+      padding: 40px;
+    }
+    .cover-image {
+      padding-top: 30px; /* Este valor debe ser igual a la altura del header */
+    }
+  }
+  

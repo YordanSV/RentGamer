@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Tenable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #00084A 50%, #007BFF 50%);
+            clip-path: polygon(0 0, 100% 0, 100% 30%, 0 60%);
+        }
+
+        .container {
+            position: relative;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #00084A;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #00084A;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 14px;
+        }
+
+        textarea {
+            grid-column: span 2;
+            resize: none;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container">
+        <h1>Vea a Tenable en acción</h1>
+        <p>¿Quiere ver cómo Tenable puede ayudar a su equipo a exponer y cerrar las debilidades cibernéticas prioritarias que ponen en riesgo su negocio? Complete este formulario para obtener más información.</p>
+        <form>
+            <input type="text" placeholder="Nombre de pila">
+            <input type="text" placeholder="Apellido">
+            <input type="email" placeholder="Dirección de correo electrónico">
+            <input type="tel" placeholder="Teléfono">
+            <input type="text" placeholder="Título">
+            <input type="text" placeholder="Compañía">
+            <select>
+                <option>Tamaño de la empresa</option>
+                <option>1-10 empleados</option>
+                <option>11-50 empleados</option>
+                <option>51-200 empleados</option>
+                <option>201-500 empleados</option>
+                <option>501-1000 empleados</option>
+                <option>1001+ empleados</option>
+            </select>
+            <select>
+                <option>Estoy interesado en:</option>
+                <option>Seguridad de la red</option>
+                <option>Gestión de vulnerabilidades</option>
+                <option>Seguridad en la nube</option>
+                <option>Otro</option>
+            </select>
+            <textarea placeholder="Comentarios (limitados a 255 caracteres):" maxlength="255"></textarea>
+            <button type="submit" class="submit-btn">Entregar</button>
+        </form>
+    </div>
+</body>
+</html>
