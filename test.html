@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Tenable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #0B0C31;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: linear-gradient(45deg, #00FF87, #0066FF);
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
+            font-size: 14px;
+        }
+
+        textarea {
+            grid-column: span 2;
+            resize: none;
+        }
+
+        .submit-btn {
+            grid-column: span 2;
+            background-color: #00FF87;
+            color: #0B0C31;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .submit-btn:hover {
+            background-color: #0066FF;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Vea a Tenable en acción</h1>
+        <p>¿Quiere ver cómo Tenable puede ayudar a su equipo a exponer y cerrar las debilidades cibernéticas prioritarias que ponen en riesgo su negocio? Complete este formulario para obtener más información.</p>
+        <form>
+            <input type="text" placeholder="Nombre de pila">
+            <input type="text" placeholder="Apellido">
+            <input type="email" placeholder="Dirección de correo electrónico">
+            <input type="tel" placeholder="Teléfono">
+            <input type="text" placeholder="Título">
+            <input type="text" placeholder="Compañía">
+            <select>
+                <option>Tamaño de la empresa</option>
+                <option>1-10 empleados</option>
+                <option>11-50 empleados</option>
+                <option>51-200 empleados</option>
+                <option>201-500 empleados</option>
+                <option>501-1000 empleados</option>
+                <option>1001+ empleados</option>
+            </select>
+            <select>
+                <option>Estoy interesado en:</option>
+                <option>Seguridad de la red</option>
+                <option>Gestión de vulnerabilidades</option>
+                <option>Seguridad en la nube</option>
+                <option>Otro</option>
+            </select>
+            <textarea placeholder="Comentarios (limitados a 255 caracteres):" maxlength="255"></textarea>
+            <button type="submit" class="submit-btn">Entregar</button>
+        </form>
+    </div>
+</body>
+</html>

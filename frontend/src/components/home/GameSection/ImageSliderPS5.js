@@ -46,27 +46,30 @@ const SliderImage = styled.img`
   }
 `;
 
-const Arrow = styled.div`
-  position: absolute;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  font-size: 24px;
-  text-align: center;
-  line-height: 30px;
-  cursor: pointer;
-  user-select: none;
-  transform: translateY(-50%);
-  ${props => (props.direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
-`;
+// const Arrow = styled.div`
+//   position: absolute;
+//   top: 50%;
+//   width: 30px;
+//   height: 30px;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   color: white;
+//   font-size: 24px;
+//   text-align: center;
+//   line-height: 30px;
+//   cursor: pointer;
+//   user-select: none;
+//   transform: translateY(-50%);
+//   ${props => (props.direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
+// `;
 
 const ImageSlider = ({ images }) => {
     const [currentImageIndex, setCurrentImageIndex] = useState(0);
     const [fade, setFade] = useState(true);
 
     const nextImage = useCallback(() => {
+      if (images.length === 1) {
+        return;
+      }
         setFade(false);
         setTimeout(() => {
             setCurrentImageIndex((currentImageIndex + 1) % images.length);
@@ -74,16 +77,16 @@ const ImageSlider = ({ images }) => {
         }, 1000); // Duración de la animación
     }, [currentImageIndex, images.length]);
 
-    const prevImage = useCallback(() => {
-        setFade(false);
-        setTimeout(() => {
-            setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
-            setFade(true);
-        }, 1000); // Duración de la animación
-    }, [currentImageIndex, images.length]);
+    // const prevImage = useCallback(() => {
+    //     setFade(false);
+    //     setTimeout(() => {
+    //         setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
+    //         setFade(true);
+    //     }, 1000); // Duración de la animación
+    // }, [currentImageIndex, images.length]);
 
     useEffect(() => {
-        const interval = setInterval(nextImage, 3000);
+        const interval = setInterval(nextImage, 4000);
         return () => clearInterval(interval);
     }, [nextImage]);
 
@@ -98,12 +101,12 @@ const ImageSlider = ({ images }) => {
                     style={{ opacity: currentImageIndex === index ? 1 : 0 }}
                 />
             ))}
-            <Arrow direction="left" onClick={prevImage}>
+            {/* <Arrow direction="left" onClick={prevImage}>
                 &#9664;
             </Arrow>
             <Arrow direction="right" onClick={nextImage}>
                 &#9654;
-            </Arrow>
+            </Arrow> */}
         </SliderContainer>
     );
 };

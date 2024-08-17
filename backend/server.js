@@ -11,13 +11,12 @@ app.use(cors({
   origin: 'https://rentgamer.netlify.app', // Cambia según dónde esté tu frontend
 }));
 
-// Configurar la conexión MySQL usando las variables proporcionadas por Railway
 const connection = mysql.createConnection({
-  host: process.env.MYSQLHOST || '127.0.0.1', // Host de la base de datos
-  user: process.env.MYSQLUSER, // Usuario de la base de datos
-  password: process.env.MYSQLPASSWORD, // Contraseña de la base de datos
-  database: process.env.MYSQLDATABASE, // Nombre de la base de datos
-  port: process.env.MYSQLPORT || 3306, // Puerto de la base de datos
+  host: process.env.MYSQLHOST || '127.0.0.1', 
+  user: process.env.MYSQLUSER, 
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
+  port: process.env.MYSQLPORT || 3306,
 });
 
 connection.connect((err) => {

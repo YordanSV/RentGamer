@@ -1,12 +1,6 @@
-import React from 'react'
+import React from 'react';
+import './title.css';
 
-function Title
-() {
-  return (
-    <div className='title'>
-        <h1>Juega sin límites</h1>
-    </div>
-  )
+export default function Title({ text }) {
+  return <h1 className="animated-title">{text}</h1>;
 }
-
-export default Title;

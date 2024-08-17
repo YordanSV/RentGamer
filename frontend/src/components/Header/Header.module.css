@@ -1,0 +1,54 @@
+/* Header.module.css */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    z-index: 1000;
+  }
+  
+  .scrolled {
+    background-color: #ffffff;
+  }
+  
+  .scrolled .navLinks a {
+    color: #007BFF;
+  }
+  
+  .scrolled .navLogo img {
+    filter: none;
+  }
+  
+  .navLogo img {
+    filter: brightness(0) invert(1);
+  }
+  
+  .navLinks a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .menuToggle {
+    cursor: pointer;
+    display: none; /* Mostrar solo en móvil si es necesario */
+  }
+  
+  .menuToggle div {
+    width: 25px;
+    height: 3px;
+    background-color: #ffffff;
+    margin: 5px 0;
+    transition: background-color 0.3s ease;
+  }
+  
+  .scrolled .menuToggle div {
+    background-color: #007BFF;
+  }
+  
