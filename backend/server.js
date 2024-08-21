@@ -27,9 +27,8 @@ connection.connect((err) => {
   console.log('Connected to the database as ID ' + connection.threadId);
 });
 
-// Ruta para realizar una consulta SELECT
 app.get('/select', (req, res) => {
-  const query = 'SELECT name FROM users'; // Reemplaza 'users' por tu tabla
+  const query = 'SELECT name FROM users';
 
   connection.query(query, (err, results) => {
     if (err) {
@@ -37,7 +36,7 @@ app.get('/select', (req, res) => {
       res.status(500).send('Error executing query');
       return;
     }
-    res.json(results); // Devolver los resultados como JSON
+    res.json(results);
   });
 });
 

@@ -14,7 +14,7 @@ import GameDetails from './components/shop/GameDetails';
 
 function App() {
   // const [data, setData] = useState([]);
-
+  
   // useEffect(() => {
   //   // Hacer la solicitud GET al backend
   //   fetch('https://rentgamer-production.up.railway.app/select')

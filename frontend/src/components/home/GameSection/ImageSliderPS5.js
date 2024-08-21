@@ -38,77 +38,47 @@ const SliderImage = styled.img`
   top: 0;
   left: 0;
   opacity: 0;
-  animation: ${props => (props.fade ? fadeIn : fadeOut)} 1s forwards;
+  animation: ${({ $fade }) => ($fade ? fadeIn : fadeOut)} 1s forwards;
 
-    @media (max-width: 1px) {
+  @media (max-width: 1px) {
     height: 1px; /* Permite que la altura se ajuste automáticamente */
     max-height: 1vh; /* Limita la altura máxima de la imagen en dispositivos móviles */
   }
 `;
 
-// const Arrow = styled.div`
-//   position: absolute;
-//   top: 50%;
-//   width: 30px;
-//   height: 30px;
-//   background-color: rgba(0, 0, 0, 0.5);
-//   color: white;
-//   font-size: 24px;
-//   text-align: center;
-//   line-height: 30px;
-//   cursor: pointer;
-//   user-select: none;
-//   transform: translateY(-50%);
-//   ${props => (props.direction === 'left' ? 'left: 10px;' : 'right: 10px;')}
-// `;
-
 const ImageSlider = ({ images }) => {
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
-    const [fade, setFade] = useState(true);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [fade, setFade] = useState(true);
 
-    const nextImage = useCallback(() => {
-      if (images.length === 1) {
-        return;
-      }
-        setFade(false);
-        setTimeout(() => {
-            setCurrentImageIndex((currentImageIndex + 1) % images.length);
-            setFade(true);
-        }, 1000); // Duración de la animación
-    }, [currentImageIndex, images.length]);
+  const nextImage = useCallback(() => {
+    if (images.length === 1) {
+      return;
+    }
+    setFade(false);
+    setTimeout(() => {
+      setCurrentImageIndex((currentImageIndex + 1) % images.length);
+      setFade(true);
+    }, 1000); // Duración de la animación
+  }, [currentImageIndex, images.length]);
 
-    // const prevImage = useCallback(() => {
-    //     setFade(false);
-    //     setTimeout(() => {
-    //         setCurrentImageIndex((currentImageIndex - 1 + images.length) % images.length);
-    //         setFade(true);
-    //     }, 1000); // Duración de la animación
-    // }, [currentImageIndex, images.length]);
+  useEffect(() => {
+    const interval = setInterval(nextImage, 4000);
+    return () => clearInterval(interval);
+  }, [nextImage]);
 
-    useEffect(() => {
-        const interval = setInterval(nextImage, 4000);
-        return () => clearInterval(interval);
-    }, [nextImage]);
-
-    return (
-        <SliderContainer>
-            {images.map((image, index) => (
-                <SliderImage
-                    key={index}
-                    src={image}
-                    alt="Sliding images"
-                    fade={fade && currentImageIndex === index}
-                    style={{ opacity: currentImageIndex === index ? 1 : 0 }}
-                />
-            ))}
-            {/* <Arrow direction="left" onClick={prevImage}>
-                &#9664;
-            </Arrow>
-            <Arrow direction="right" onClick={nextImage}>
-                &#9654;
-            </Arrow> */}
-        </SliderContainer>
-    );
+  return (
+    <SliderContainer>
+      {images.map((image, index) => (
+        <SliderImage
+          key={index}
+          src={image}
+          alt="Sliding images"
+          $fade={fade && currentImageIndex === index}
+          style={{ opacity: currentImageIndex === index ? 1 : 0 }}
+        />
+      ))}
+    </SliderContainer>
+  );
 };
 
 export default ImageSlider;

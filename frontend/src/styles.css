@@ -94,9 +94,15 @@ body {
     transform: rotate(45deg) translate(-5px, -6px);
 }
 
+.doll{
+  width: 10%;
+}
+
+
 .info-section {
   text-align: center;
   padding: 100px 20px;
+  padding-bottom: 15%;
 }
 
 .info-section h2 {
@@ -150,7 +156,7 @@ body {
 
     .info-section {
       text-align: center;
-      padding: 20px 20px;
+      padding: 30px 20px;
     }
     .info-section h3 {
       font-size: 1.1rem; /* Usa rem para un tamaño de fuente relativo */
@@ -159,6 +165,11 @@ body {
     .info-section p {
       font-size: 0.8rem; /* Usa rem para un tamaño de fuente relativo */
     }
+
+    .doll{
+      width: 20%;
+    }
+    
 }
 
   
