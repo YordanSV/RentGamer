@@ -34,12 +34,7 @@ const ImageSlider = ({ images }) => {
                     style={{ opacity: currentImageIndex === index ? 1 : 0 }}
                 />
             ))}
-            {/* <Arrow direction="left" onClick={prevImage}>
-                &#9664;
-            </Arrow>
-            <Arrow direction="right" onClick={nextImage}>
-                &#9654;
-            </Arrow> */}
+
         </SliderContainer>
     );
 };
