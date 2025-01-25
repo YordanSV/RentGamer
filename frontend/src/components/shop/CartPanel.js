@@ -2,6 +2,39 @@ import React from 'react';
 import styled from 'styled-components';
 import { useCart } from './CartContext';
 
+
+const CartPanel = ({ games, isOpen, onClose }) => {
+  const { cart } = useCart();
+
+  const cartItems = cart.map(id => games.find(game => game.id === id));
+  const total = cartItems.reduce((acc, game) => acc + game.price, 0);
+
+  return (
+    <Panel isOpen={isOpen}>
+      <CartHeader>
+        <h2>Carrito</h2>
+        <Button onClick={onClose}>Cerrar</Button>
+      </CartHeader>
+      <CartItems>
+        {cartItems.map(game => (
+          <Item key={game.id}>
+            <ItemName>{game.name}</ItemName>
+            <ItemPrice>${game.price}</ItemPrice>
+          </Item>
+        ))}
+      </CartItems>
+      <Total>Total: ${total}</Total>
+      <Button onClick={onClose}>Cerrar</Button>
+    </Panel>
+  );
+};
+
+export default CartPanel;
+
+
+
+
+
 const Panel = styled.div`
   position: fixed;
   top: 0;
@@ -69,31 +102,3 @@ const Button = styled.button`
     background-color: #0056b3;
   }
 `;
-
-const CartPanel = ({ games, isOpen, onClose }) => {
-  const { cart } = useCart();
-
-  const cartItems = cart.map(id => games.find(game => game.id === id));
-  const total = cartItems.reduce((acc, game) => acc + game.price, 0);
-
-  return (
-    <Panel isOpen={isOpen}>
-      <CartHeader>
-        <h2>Carrito</h2>
-        <Button onClick={onClose}>Cerrar</Button>
-      </CartHeader>
-      <CartItems>
-        {cartItems.map(game => (
-          <Item key={game.id}>
-            <ItemName>{game.name}</ItemName>
-            <ItemPrice>${game.price}</ItemPrice>
-          </Item>
-        ))}
-      </CartItems>
-      <Total>Total: ${total}</Total>
-      <Button onClick={onClose}>Cerrar</Button>
-    </Panel>
-  );
-};
-
-export default CartPanel;

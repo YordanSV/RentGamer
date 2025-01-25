@@ -2,6 +2,41 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
 
+
+
+const GameCard = ({ game, onAddToCart }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+
+  return (
+    <>
+      <Card>
+        <ImageContainer>
+          <Image src={game.image} alt={game.name} />
+        </ImageContainer>
+        <Content>
+          <Title>{game.name}</Title>
+          <Title>{`$${game.price}`}</Title>
+          <ButtonContainer>
+            <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
+            <Button onClick={handleOpenModal}>Ver detalles</Button>
+          </ButtonContainer>
+        </Content>
+      </Card>
+      {isModalOpen && <Modal game={game} onClose={handleCloseModal} />}
+    </>
+  );
+};
+
+export default GameCard;
+
+
+
+
+
+
 const Card = styled.div`
   background: #001020;
   border-radius: 10px;
@@ -74,31 +109,3 @@ const Button = styled.button`
     margin: 5px 0;
   }
 `;
-
-const GameCard = ({ game, onAddToCart }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
-
-  return (
-    <>
-      <Card>
-        <ImageContainer>
-          <Image src={game.image} alt={game.name} />
-        </ImageContainer>
-        <Content>
-          <Title>{game.name}</Title>
-          <Title>{`$${game.price}`}</Title>
-          <ButtonContainer>
-            <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
-            <Button onClick={handleOpenModal}>Ver detalles</Button>
-          </ButtonContainer>
-        </Content>
-      </Card>
-      {isModalOpen && <Modal game={game} onClose={handleCloseModal} />}
-    </>
-  );
-};
-
-export default GameCard;

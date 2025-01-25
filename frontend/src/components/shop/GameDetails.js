@@ -2,6 +2,33 @@ import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
+
+
+const GameDetails = ({ games }) => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const game = games.find(game => game.id.toString() === id);
+
+  if (!game) {
+    return <p>Juego no encontrado</p>;
+  }
+
+  return (
+    <DetailsContainer>
+      <Title>{game.name}</Title>
+      <Image src={game.image} alt={game.name} />
+      <Description>{game.description}</Description>
+      <BackButton onClick={() => navigate(-1)}>Volver</BackButton>
+    </DetailsContainer>
+  );
+};
+
+export default GameDetails;
+
+
+
+
+
 const DetailsContainer = styled.div`
   width: 80%;
   margin: auto;
@@ -41,24 +68,3 @@ const BackButton = styled.button`
     background-color: #ff4500;
   }
 `;
-
-const GameDetails = ({ games }) => {
-  const { id } = useParams();
-  const navigate = useNavigate();
-  const game = games.find(game => game.id.toString() === id);
-
-  if (!game) {
-    return <p>Juego no encontrado</p>;
-  }
-
-  return (
-    <DetailsContainer>
-      <Title>{game.name}</Title>
-      <Image src={game.image} alt={game.name} />
-      <Description>{game.description}</Description>
-      <BackButton onClick={() => navigate(-1)}>Volver</BackButton>
-    </DetailsContainer>
-  );
-};
-
-export default GameDetails;

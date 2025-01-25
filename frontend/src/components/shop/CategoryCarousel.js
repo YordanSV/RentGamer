@@ -2,16 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import GameCarousel from './GameCarousel';
 
-const CarouselContainer = styled.div`
-  width: 87%;
-  margin: auto;
-  margin-bottom: 40px;
-`;
 
-const CategoryTitle = styled.h2`
-  margin: 20px 0;
-  text-align: center;
-`;
 
 const groupByCategory = (games) => {
   return games.reduce((acc, game) => {
@@ -39,3 +30,17 @@ const CategoryCarousel = ({ games, onAddToCart }) => {
 };
 
 export default CategoryCarousel;
+
+
+
+
+const CarouselContainer = styled.div`
+  width: 87%;
+  margin: auto;
+  margin-bottom: 40px;
+`;
+
+const CategoryTitle = styled.h2`
+  margin: 20px 0;
+  text-align: center;
+`;

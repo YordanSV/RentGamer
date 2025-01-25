@@ -8,20 +8,8 @@ import ShopPage from './pages/ShopPage';
 import RegisterPage from './pages/RegisterPage';
 import GameDetails from './components/shop/GameDetails';
 
-// En tu componente de React
-// import React, { useEffect, useState } from 'react';
-
 
 function App() {
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   // Hacer la solicitud GET al backend
-  //   fetch('https://rentgamer-production.up.railway.app/select')
-  //     .then(response => response.json())
-  //     .then(data => setData(data))
-  //     .catch(error => console.error('Error fetching data:', error));
-  // }, []);
 
   return (
     <Router>

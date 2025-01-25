@@ -1,6 +1,39 @@
 import React from 'react';
 import styled from 'styled-components';
 
+
+const ShoppingCart = ({ className, items, onCheckout, onRemoveToCart }) => {
+    const amount = items.length;
+    const total = items.reduce((acc, item) => acc + item.price, 0);
+
+    return (
+        <CartContainer className={className}>
+            <CartHeader>Carrito de Compras</CartHeader>
+            {items.map((item, index) => (
+                <CartItem key={index}>
+                    <ItemName>{item.name}</ItemName>
+                    <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
+                    <RemoveButton onClick={() => onRemoveToCart(item.id)}>Eliminar</RemoveButton>
+                </CartItem>
+            ))}
+            <Total>
+                <span>Total:</span>
+                <span>${total.toFixed(2)}</span>
+            </Total>
+            <Total>
+                <span>Cantidad:</span>
+                <span>{amount}</span>
+            </Total>
+            <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
+        </CartContainer>
+    );
+};
+
+export default ShoppingCart;
+
+
+
+
 const CartContainer = styled.div`
   width: 400px;
   background: #001020;
@@ -110,32 +143,3 @@ const RemoveButton = styled.button`
     padding: 8px;
   }
 `;
-
-const ShoppingCart = ({ className, items, onCheckout, onRemoveToCart }) => {
-    const amount = items.length;
-    const total = items.reduce((acc, item) => acc + item.price, 0);
-
-    return (
-        <CartContainer className={className}>
-            <CartHeader>Carrito de Compras</CartHeader>
-            {items.map((item, index) => (
-                <CartItem key={index}>
-                    <ItemName>{item.name}</ItemName>
-                    <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
-                    <RemoveButton onClick={() => onRemoveToCart(item.id)}>Eliminar</RemoveButton>
-                </CartItem>
-            ))}
-            <Total>
-                <span>Total:</span>
-                <span>${total.toFixed(2)}</span>
-            </Total>
-            <Total>
-                <span>Cantidad:</span>
-                <span>{amount}</span>
-            </Total>
-            <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
-        </CartContainer>
-    );
-};
-
-export default ShoppingCart;
