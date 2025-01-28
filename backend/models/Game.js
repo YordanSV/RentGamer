@@ -1,4 +1,4 @@
-const db = require('../database'); // Importar conexión a la base de datos
+const db = require('../server'); // Importar conexión a la base de datos
 
 const Game = {
   getAll: () => {
