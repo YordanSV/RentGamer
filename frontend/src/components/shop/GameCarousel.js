@@ -50,12 +50,12 @@ const settings = {
   ]
 };
 
-const GameCarousel = ({ games, onAddToCart }) => {
-  // console.log()
+const GameCarousel = ({ games }) => {
+
   return (
     <StyledSlider {...settings}>
       {games.map(game => (
-        <GameCard key={game.id} game={game} onAddToCart={onAddToCart} />
+        <GameCard key={game.id} game={game} />
       ))}
     </StyledSlider>
   );

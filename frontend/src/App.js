@@ -7,6 +7,7 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import RegisterPage from './pages/RegisterPage';
 import GameDetails from './components/shop/GameDetails';
+import ShoppingCart from './components/shop/ShoppingCart';
 
 
 function App() {
@@ -14,6 +15,9 @@ function App() {
   return (
     <Router>
       <Header />
+      <ShoppingCart 
+            onCheckout={() => console.log('Se ha pagado')} 
+          />
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />

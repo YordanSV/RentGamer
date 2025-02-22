@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Modal from './Modal';
+import { useCart } from "./CartContext"; // Importamos el contexto
 
 
 
-const GameCard = ({ game, onAddToCart }) => {
+const GameCard = ({ game }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addToCart } = useCart(); // Obtenemos el carrito y la función
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -20,7 +22,7 @@ const GameCard = ({ game, onAddToCart }) => {
           <Title>{game.name}</Title>
           <Title>{`$${game.price}`}</Title>
           <ButtonContainer>
-            <Button onClick={() => onAddToCart(game.id)}>Agregar al carrito</Button>
+            <Button onClick={() => addToCart (game.id)}>Agregar al carrito</Button>
             <Button onClick={handleOpenModal}>Ver detalles</Button>
           </ButtonContainer>
         </Content>

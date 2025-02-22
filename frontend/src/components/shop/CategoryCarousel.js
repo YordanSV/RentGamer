@@ -15,14 +15,14 @@ const groupByCategory = (games) => {
 };
 
 
-const CategoryCarousel = ({ games, onAddToCart }) => {
+const CategoryCarousel = ({ games }) => {
   const gamesByCategory = groupByCategory(games);
   return (
     <div>
       {Object.keys(gamesByCategory).map(category => (
         <CarouselContainer key={category}>
           <CategoryTitle>{category}</CategoryTitle>
-          <GameCarousel key={category} games={gamesByCategory[category]} onAddToCart={onAddToCart} />
+          <GameCarousel key={category} games={gamesByCategory[category]} />
         </CarouselContainer>
       ))}
     </div>

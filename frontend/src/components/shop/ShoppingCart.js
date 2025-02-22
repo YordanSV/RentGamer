@@ -1,32 +1,45 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+import { useCart } from "./CartContext";
 
+const ShoppingCart = ({ onCheckout }) => {
+  const { cart, removeFromCart } = useCart();
+  const [isCartVisible, setIsCartVisible] = useState(false);
 
-const ShoppingCart = ({ className, items, onCheckout, onRemoveToCart }) => {
-    const amount = items.length;
-    const total = items.reduce((acc, item) => acc + item.price, 0);
+  const handleCartIconClick = () => {
+    setIsCartVisible(!isCartVisible);
+  };
 
-    return (
-        <CartContainer className={className}>
-            <CartHeader>Carrito de Compras</CartHeader>
-            {items.map((item, index) => (
-                <CartItem key={index}>
-                    <ItemName>{item.name}</ItemName>
-                    <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
-                    <RemoveButton onClick={() => onRemoveToCart(item.id)}>Eliminar</RemoveButton>
-                </CartItem>
-            ))}
-            <Total>
-                <span>Total:</span>
-                <span>${total.toFixed(2)}</span>
-            </Total>
-            <Total>
-                <span>Cantidad:</span>
-                <span>{amount}</span>
-            </Total>
-            <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
-        </CartContainer>
-    );
+  const amount = cart.length;
+  const total = cart.reduce((acc, item) => acc + item.price, 0);
+
+  return (
+    <CartContainer className={isCartVisible ? 'shopping-cart visible' : 'shopping-cart'}>
+      <div className="cart-icon-container" onClick={handleCartIconClick}>
+        🛒
+        {cart.length > 0 && (
+          <span className="cart-count">{cart.length}</span>
+        )}
+      </div>
+      <CartHeader>Carrito de Compras</CartHeader>
+      {cart.map((item, index) => (
+        <CartItem key={index}>
+          <ItemName>{item.name}</ItemName>
+          <ItemPrice>${item.price.toFixed(2)}</ItemPrice>
+          <RemoveButton onClick={() => removeFromCart(item.id)}>Eliminar</RemoveButton>
+        </CartItem>
+      ))}
+      <Total>
+        <span>Total:</span>
+        <span>${total.toFixed(2)}</span>
+      </Total>
+      <Total>
+        <span>Cantidad:</span>
+        <span>{amount}</span>
+      </Total>
+      <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
+    </CartContainer>
+  );
 };
 
 export default ShoppingCart;
