@@ -18,7 +18,7 @@ export default function Nav() {
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/shop">Tienda</a></li>
                 <li><a href="#reservation">Reserva online</a></li>
-                <li><a href="#plans">Planes y precios</a></li>        
+                <li><a href="/subscription">Planes y precios</a></li>        
             </ul>
         </nav>
     );

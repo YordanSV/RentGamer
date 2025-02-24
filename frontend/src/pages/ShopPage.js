@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { games } from '../data/games';
 // import ShoppingCart from '../components/shop/ShoppingCart';
 import CategoryCarousel from '../components/shop/CategoryCarousel';
-import { useCart } from '../components/shop/CartContext';
+// import { useCart } from '../components/shop/CartContext';
 import './shopPage.css';
 
 const ShopPage = () => {
@@ -16,11 +16,6 @@ const ShopPage = () => {
   return (
     <div className="shop-container">
       <h1 className='h1'>Nuestra Tienda</h1>
-
-      {/* <ShoppingCart 
-        className={isCartVisible ? 'shopping-cart visible' : 'shopping-cart'} 
-        onCheckout={() => console.log('Se ha pagado')} 
-      /> */}
       <CategoryCarousel games={games} />
     </div>
   );

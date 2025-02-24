@@ -8,6 +8,7 @@ import ShopPage from './pages/ShopPage';
 import RegisterPage from './pages/RegisterPage';
 import GameDetails from './components/shop/GameDetails';
 import ShoppingCart from './components/shop/ShoppingCart';
+import SubscriptionPage from './pages/SubscriptionPage';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           />
       <main>
         <Routes>
+          <Route path="/subscription" element={<SubscriptionPage />} />
           <Route path="/" element={<HomePage />} />
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/shop/game/:id" element={<GameDetails games={games} />} />
