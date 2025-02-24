@@ -25,6 +25,7 @@ const ModalContent = styled.div`
   
   @media (max-width: 768px) {
     font-size: 10px; /* Tamaño relativo al elemento padre */
+  } /* 🔴 Aquí faltaba esta llave de cierre */
 `;
 
 const CloseButton = styled.button`
@@ -48,7 +49,11 @@ const Modal = ({ game, onClose }) => {
     <ModalOverlay onClick={onClose}>
       <ModalContent onClick={e => e.stopPropagation()}>
         <h2>{game.name}</h2>
-        <img src={game.image} alt={game.name} style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }} />
+        <img 
+          src={game.image} 
+          alt={game.name} 
+          style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }} 
+        />
         <p>{game.description}</p>
         <CloseButton onClick={onClose}>Cerrar</CloseButton>
       </ModalContent>

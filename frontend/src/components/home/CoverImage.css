@@ -2,19 +2,18 @@
     position: relative;
     text-align: center;
     color: white;
-    padding-top: 0px; /* Este valor debe ser igual a la altura del header */
   }
   
   .cover-image img {
     width: 100%;
-    height: auto;
+    height: 700px;
     display: block;
   }
   
   .text-content {
     position: absolute;
-    top: 70%;
-    left: 28%;
+    top: 60%;
+    left: 31%;
     transform: translate(-50%, -50%);
     text-align: left; /* Cambiar alineación del texto a la izquierda */
     padding: 20px;
@@ -89,12 +88,13 @@
     }
   
     .text-content {
-      top: 70%;
+      top: 65%;
       left: 28%;
       padding: 40px;
     }
-    .cover-image {
-      padding-top: 30px; /* Este valor debe ser igual a la altura del header */
+
+    .cover-image img {
+      height: auto;
     }
   }
   

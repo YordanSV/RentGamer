@@ -7,12 +7,10 @@ import CoverImage from '../components/home/CoverImage';
 const HomePage = () => {
   return (
     <div>
-      {/* <Header /> */}
       <CoverImage/>
       <InfoSection />
       <GameSection />
       <CirclesSection />
-      {/* <Footer/> */}
     </div>
   );
 };

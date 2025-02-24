@@ -14,7 +14,7 @@ export default function CoverImage() {
       <img src="/cover-image.jpeg" alt="front-page" />
       <div className="text-content">
         <h1 className="animated-title">Juega sin límites</h1>
-        <p className="subtitle">La mejor experiencia de alquiler de juegos</p>
+        <p className="subtitle">La mejor experiencia de alquiler de videojuegos</p>
         <button className="learn-more-button" onClick={scrollToContent}>
           Saber más
         </button>

@@ -22,7 +22,7 @@ const GameCard = ({ game }) => {
           <Title>{game.name}</Title>
           <Title>{`$${game.price}`}</Title>
           <ButtonContainer>
-            <Button onClick={() => addToCart (game.id)}>Agregar al carrito</Button>
+            <Button onClick={() => addToCart(game)}>Agregar al carrito</Button>
             <Button onClick={handleOpenModal}>Ver detalles</Button>
           </ButtonContainer>
         </Content>

@@ -1,14 +1,13 @@
 .container {
   text-align: center;
-  width: 100%;
+  width: 85%;
   max-width: 1200px;
-  padding: 20px;
+  padding: 6%;
   margin: 0 auto; /* 🔹 Asegura que el contenedor esté completamente centrado */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 100px; /* 🔹 Evita que el header lo cubra */
 }
 
 
@@ -107,6 +106,7 @@
 .subscribe-button:hover {
   background: #0056b3;
 }
+
 
 @media (min-width: 900px) {
   .plans-container {

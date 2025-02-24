@@ -1,4 +1,4 @@
-// import React from 'react';
+import React, {useEffect} from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { games } from './data/games';
 import Header from './components/Header/Header';
@@ -16,9 +16,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <ShoppingCart 
-            onCheckout={() => console.log('Se ha pagado')} 
-          />
+
       <main>
         <Routes>
           <Route path="/subscription" element={<SubscriptionPage />} />

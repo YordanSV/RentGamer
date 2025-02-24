@@ -1,0 +1,11 @@
+.nav-logo img {
+  max-width: 150px; /* No excede este tamaño */
+  width: 100%;  /* Se ajusta al contenedor */
+  height: auto;
+  /* filter: brightness(0) invert(1); */
+}
+
+
+.nav-logo{
+  width: 100%;  /* Se ajusta al contenedor */
+}
