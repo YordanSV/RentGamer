@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { games } from './data/games';
 import Header from './components/Header/Header';
@@ -7,7 +7,7 @@ import HomePage from './pages/HomePage';
 import ShopPage from './pages/ShopPage';
 import RegisterPage from './pages/RegisterPage';
 import GameDetails from './components/shop/GameDetails';
-import ShoppingCart from './components/shop/ShoppingCart';
+// import ShoppingCart from './components/shop/ShoppingCart';
 import SubscriptionPage from './pages/SubscriptionPage';
 
 
@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <Header />
-
       <main>
         <Routes>
           <Route path="/subscription" element={<SubscriptionPage />} />
