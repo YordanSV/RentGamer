@@ -1,11 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const gameController = require('../controllers/gameController');
+const { validateGame, validateGameId } = require('../validators/gameValidator');
 
+// Aplicar validación de ID en rutas que lo requieren
+router.param('id', validateGameId);
+
+// Rutas
 router.get('/', gameController.getAllGames);
 router.get('/:id', gameController.getGameById);
-router.post('/', gameController.createGame);
-router.put('/:id', gameController.updateGame);
+router.post('/', validateGame, gameController.createGame);
+router.put('/:id', validateGame, gameController.updateGame);
 router.delete('/:id', gameController.deleteGame);
 
 module.exports = router;
+
+

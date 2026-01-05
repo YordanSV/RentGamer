@@ -1,70 +1,179 @@
-# Getting Started with Create React App
+# 🎮 RentGamer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Plataforma de alquiler de videojuegos desarrollada con React y Node.js.
 
-## Available Scripts
+## 🚀 Inicio Rápido
 
-In the project directory, you can run:
+### Prerrequisitos
 
-### `npm start`
+- Node.js 18+ 
+- npm o yarn
+- MySQL (para desarrollo local)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Instalación
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+# Clonar el repositorio
+git clone https://github.com/tu-usuario/rentgamer.git
+cd rentgamer
 
-### `npm test`
+# Instalar dependencias
+npm run install:all
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Configuración
 
-### `npm run build`
+1. **Backend:**
+   - Copiar `backend/.env.example` a `backend/.env`
+   - Configurar variables de entorno (base de datos, puertos, etc.)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Frontend:**
+   - Las variables de entorno se configuran en `frontend/.env` si es necesario
+   - Por defecto usa la URL del backend configurada en `src/api/apiClient.js`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Ejecución Local
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+**Windows (PowerShell):**
+```powershell
+.\scripts\dev-local.ps1
+```
 
-### `npm run eject`
+**Linux/Mac:**
+```bash
+chmod +x scripts/dev-local.sh
+./scripts/dev-local.sh
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**O manualmente:**
+```bash
+# Terminal 1 - Backend
+cd backend
+npm run dev
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Terminal 2 - Frontend  
+cd frontend
+npm start
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+El proyecto estará disponible en:
+- **Frontend:** http://localhost:3000
+- **Backend:** http://localhost:3001
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 📁 Estructura del Proyecto
 
-## Learn More
+```
+RentGamer/
+├── backend/              # API Node.js/Express
+│   └── src/
+│       ├── config/       # Configuración (DB, CORS)
+│       ├── controllers/  # Controladores
+│       ├── middleware/   # Middleware (errores, logging)
+│       ├── models/       # Modelos de datos
+│       ├── routes/       # Rutas
+│       ├── services/     # Lógica de negocio
+│       └── validators/   # Validación de datos
+├── frontend/            # Aplicación React
+│   └── src/
+│       ├── api/          # Servicios de API
+│       ├── components/   # Componentes React
+│       ├── contexts/    # Contextos (Cart, etc.)
+│       ├── hooks/        # Hooks personalizados
+│       ├── pages/        # Páginas
+│       ├── styles/       # Estilos globales
+│       └── utils/        # Utilidades
+├── scripts/              # Scripts de desarrollo y build
+└── docs/                 # Documentación
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🛠️ Scripts Disponibles
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Desde la raíz del proyecto:
 
-### Code Splitting
+```bash
+npm run install:all      # Instalar dependencias de backend y frontend
+npm run dev              # Ejecutar backend y frontend en desarrollo
+npm run dev:backend      # Solo backend
+npm run dev:frontend     # Solo frontend
+npm run build            # Construir frontend para producción
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Backend:
 
-### Analyzing the Bundle Size
+```bash
+cd backend
+npm start                # Iniciar servidor en producción
+npm run dev              # Iniciar servidor en desarrollo (con nodemon)
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Frontend:
 
-### Making a Progressive Web App
+```bash
+cd frontend
+npm start                # Iniciar en desarrollo
+npm run build            # Construir para producción
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## ☁️ Despliegue en Azure
 
-### Advanced Configuration
+Para desplegar en Azure (gratis o con costos mínimos), consulta la [Guía de Despliegue](DEPLOYMENT.md).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### Resumen Rápido:
 
-### Deployment
+1. **Frontend:** Azure Static Web Apps (Gratis)
+2. **Backend:** Azure App Service Free Tier (F1)
+3. **Base de Datos:** Azure Database for MySQL Free Tier
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+**Costo estimado:** $0-25/mes (solo dominio opcional)
 
-### `npm run build` fails to minify
+## 🧪 Testing
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+# Backend (cuando se implementen tests)
+cd backend
+npm test
+
+# Frontend
+cd frontend
+npm test
+```
+
+## 📚 Tecnologías Utilizadas
+
+### Backend:
+- Node.js
+- Express.js
+- MySQL2
+- dotenv
+
+### Frontend:
+- React 18
+- React Router
+- Axios
+- Styled Components
+- React Slick
+
+## 🤝 Contribuir
+
+1. Fork el proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 📝 Licencia
+
+Este proyecto está bajo la Licencia ISC.
+
+## 👤 Autor
+
+Tu nombre - [@tu-twitter](https://twitter.com/tu-twitter)
+
+## 🙏 Agradecimientos
+
+- [Create React App](https://github.com/facebook/create-react-app)
+- [Express.js](https://expressjs.com/)
+- [Azure](https://azure.microsoft.com/)
+
+---
+
+**¿Necesitas ayuda?** Consulta la [documentación completa](DEPLOYMENT.md) o abre un issue.

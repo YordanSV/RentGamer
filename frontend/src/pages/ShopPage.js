@@ -1,22 +1,48 @@
 import React from 'react';
-import { games } from '../data/games';
-// import ShoppingCart from '../components/shop/ShoppingCart';
 import CategoryCarousel from '../components/shop/CategoryCarousel';
-// import { useCart } from '../components/shop/CartContext';
+import useApi from '../hooks/useApi';
+import gameApi from '../api/gameApi';
 import './shopPage.css';
 
 const ShopPage = () => {
-  // const { cart } = useCart(); // Usamos el contexto
-  // const [isCartVisible, setIsCartVisible] = useState(false);
+  const { data, loading, error } = useApi(() => gameApi.getAllGames());
 
-  // const handleCartIconClick = () => {
-  //   setIsCartVisible(!isCartVisible);
-  // };
+  if (loading) {
+    return (
+      <div className="shop-container">
+        <h1 className='h1'>Nuestra Tienda</h1>
+        <div style={{ textAlign: 'center', padding: '40px' }}>
+          <p>Cargando juegos...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="shop-container">
+        <h1 className='h1'>Nuestra Tienda</h1>
+        <div style={{ textAlign: 'center', padding: '40px', color: 'red' }}>
+          <p>Error al cargar los juegos: {error}</p>
+        </div>
+      </div>
+    );
+  }
+
+  // La API devuelve { success: true, data: [...] }
+  // useApi pone response.data en 'data', que ya es { success: true, data: [...] }
+  const games = data?.data || [];
 
   return (
     <div className="shop-container">
       <h1 className='h1'>Nuestra Tienda</h1>
-      <CategoryCarousel games={games} />
+      {games.length > 0 ? (
+        <CategoryCarousel games={games} />
+      ) : (
+        <div style={{ textAlign: 'center', padding: '40px' }}>
+          <p>No hay juegos disponibles</p>
+        </div>
+      )}
     </div>
   );
 };

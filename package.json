@@ -1,0 +1,31 @@
+{
+  "name": "rentgamer",
+  "version": "1.0.0",
+  "description": "RentGamer - Plataforma de alquiler de videojuegos",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run start --prefix frontend\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:frontend": "npm run start --prefix frontend",
+    "build": "npm run build --prefix frontend",
+    "build:backend": "echo 'Backend no requiere build'",
+    "build:frontend": "npm run build --prefix frontend",
+    "start:backend": "npm run start --prefix backend",
+    "start:frontend": "npm run start --prefix frontend",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gaming",
+    "rental",
+    "react",
+    "nodejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
+
+
