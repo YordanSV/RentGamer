@@ -13,7 +13,7 @@ export default function CoverImage() {
     <div className="cover-image">
       <img src="/cover-image.jpeg" alt="front-page" />
       <div className="text-content">
-        <h1 className="animated-title">Juega sin líes</h1>
+        <h1 className="animated-title">Juega sin límites</h1>
         <p className="subtitle">La mejor experiencia de alquiler de videojuegos</p>
         <button className="learn-more-button" onClick={scrollToContent}>
           Saber más

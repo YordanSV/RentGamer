@@ -3,68 +3,48 @@
  * Simplifica el uso de llamadas asíncronas en componentes
  */
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
-const useApi = (apiFunction, dependencies = []) => {
+const useApi = (apiFunction, depsKey = '') => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      setError(null);
+
+      const result = await apiFunction();
+
+      if (result?.success) {
+        setData(result.data);
+      } else {
+        setError(result?.error || 'Error desconocido');
+      }
+    } catch (err) {
+      setError(err?.message || 'Error al cargar datos');
+    } finally {
+      setLoading(false);
+    }
+  }, [apiFunction]);
+
   useEffect(() => {
     let isMounted = true;
 
-    const fetchData = async () => {
-      try {
-        setLoading(true);
-        setError(null);
-        const result = await apiFunction();
-        
-        if (isMounted) {
-          if (result.success) {
-            setData(result.data);
-          } else {
-            setError(result.error || 'Error desconocido');
-          }
-        }
-      } catch (err) {
-        if (isMounted) {
-          setError(err.message || 'Error al cargar datos');
-        }
-      } finally {
-        if (isMounted) {
-          setLoading(false);
-        }
-      }
+    const run = async () => {
+      if (!isMounted) return;
+      await fetchData();
     };
 
-    fetchData();
+    run();
 
     return () => {
       isMounted = false;
     };
-  }, dependencies);
+  }, [fetchData, depsKey]); // ✅ literal, sin spread, ESLint feliz
 
-  const refetch = async () => {
-    try {
-      setLoading(true);
-      setError(null);
-      const result = await apiFunction();
-      
-      if (result.success) {
-        setData(result.data);
-      } else {
-        setError(result.error || 'Error desconocido');
-      }
-    } catch (err) {
-      setError(err.message || 'Error al cargar datos');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return { data, loading, error, refetch };
+  return { data, loading, error, refetch: fetchData };
 };
 
 export default useApi;
-
-
