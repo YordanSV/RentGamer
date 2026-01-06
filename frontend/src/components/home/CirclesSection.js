@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import gameApi from '../../api/gameApi';
 
 // Define styled components
 const Section = styled.section`
@@ -85,19 +85,18 @@ const Button = styled.button`
 const CirclesSection = () => {
   const [data, setData] = useState('')
 
-  function handleClick() {
-    console.log('linea 89')
-
-    axios.get('https://my-backend.railway.app/select')
-      .then(Response => {
-        console.log('linea 93')
-        setData(Response.data)
-        console.log(setData)
-        console.log(Response)
-      })
-      .catch(error => {
-        console.error('Error Fetching data: ', error);
-      })
+  async function handleClick() {
+    try {
+      const result = await gameApi.getAllGames();
+      if (result.success) {
+        // Si necesitas mostrar algo específico de los datos
+        setData(result.data?.length || '');
+      } else {
+        console.error('Error al obtener datos:', result.error);
+      }
+    } catch (error) {
+      console.error('Error Fetching data: ', error);
+    }
   }
 
   return (

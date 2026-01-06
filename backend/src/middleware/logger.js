@@ -1,0 +1,26 @@
+/**
+ * Middleware para logging de peticiones HTTP
+ * Registra información útil para debugging y monitoreo
+ */
+
+const logger = (req, res, next) => {
+  const start = Date.now();
+  
+  // Registrar cuando la respuesta termina
+  res.on('finish', () => {
+    const duration = Date.now() - start;
+    const logMessage = `${req.method} ${req.originalUrl} - ${res.statusCode} - ${duration}ms`;
+    
+    if (res.statusCode >= 400) {
+      console.error(`❌ ${logMessage}`);
+    } else {
+      console.log(`✅ ${logMessage}`);
+    }
+  });
+
+  next();
+};
+
+module.exports = logger;
+
+

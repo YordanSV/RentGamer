@@ -1,0 +1,7 @@
+{
+  "name": "RentGamer API",
+  "description": "API backend para RentGamer usando Azure Functions",
+  "note": "Este archivo es solo para referencia. Para usar Azure Functions, necesitarías refactorizar el código Express a Functions."
+}
+
+

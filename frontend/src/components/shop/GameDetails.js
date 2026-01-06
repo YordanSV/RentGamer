@@ -1,23 +1,51 @@
 import React from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import useApi from '../../hooks/useApi';
+import gameApi from '../../api/gameApi';
 
-
-
-const GameDetails = ({ games }) => {
+const GameDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const game = games.find(game => game.id.toString() === id);
+  const { data, loading, error } = useApi(() => gameApi.getGameById(id), [id]);
+
+  if (loading) {
+    return (
+      <DetailsContainer>
+        <p>Cargando detalles del juego...</p>
+      </DetailsContainer>
+    );
+  }
+
+  if (error) {
+    return (
+      <DetailsContainer>
+        <p style={{ color: 'red' }}>Error al cargar el juego: {error}</p>
+        <BackButton onClick={() => navigate(-1)}>Volver</BackButton>
+      </DetailsContainer>
+    );
+  }
+
+  // La API devuelve { success: true, data: {...} }
+  // useApi pone response.data en 'data', que ya es { success: true, data: {...} }
+  const game = data?.data;
 
   if (!game) {
-    return <p>Juego no encontrado</p>;
+    return (
+      <DetailsContainer>
+        <p>Juego no encontrado</p>
+        <BackButton onClick={() => navigate(-1)}>Volver</BackButton>
+      </DetailsContainer>
+    );
   }
 
   return (
     <DetailsContainer>
       <Title>{game.name}</Title>
-      <Image src={game.image} alt={game.name} />
-      <Description>{game.description}</Description>
+      {game.image && <Image src={game.image} alt={game.name} />}
+      {game.description && <Description>{game.description}</Description>}
+      {game.price && <Price>Precio: ${game.price}</Price>}
+      {game.category_name && <Category>Categoría: {game.category_name}</Category>}
       <BackButton onClick={() => navigate(-1)}>Volver</BackButton>
     </DetailsContainer>
   );
@@ -52,6 +80,19 @@ const Title = styled.h2`
 const Description = styled.p`
   font-size: 1.2em;
   margin-top: 20px;
+`;
+
+const Price = styled.p`
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #4CAF50;
+  margin: 15px 0;
+`;
+
+const Category = styled.p`
+  font-size: 1.1em;
+  color: #888;
+  margin: 10px 0;
 `;
 
 const BackButton = styled.button`

@@ -6,10 +6,12 @@ import GameCarousel from './GameCarousel';
 
 const groupByCategory = (games) => {
   return games.reduce((acc, game) => {
-    if (!acc[game.category]) {
-      acc[game.category] = [];
+    // La API devuelve category_name en lugar de category
+    const category = game.category_name || game.category || 'Sin categoría';
+    if (!acc[category]) {
+      acc[category] = [];
     }
-    acc[game.category].push(game);
+    acc[category].push(game);
     return acc;
   }, {});
 };
