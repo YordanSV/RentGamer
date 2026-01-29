@@ -49,7 +49,7 @@ const ShoppingCart = ({ onCheckout }) => {
       {isCartVisible && <Backdrop onClick={handleCartIconClick} />}
 
       {/* Contenedor del carrito en forma de menú lateral */}
-      <CartContainer ref={cartRef} isVisible={isCartVisible}>
+      <CartContainer ref={cartRef} $isVisible={isCartVisible}>
         <CartHeader>CARRITO DE COMPRAS</CartHeader>
         <CloseButton onClick={handleCartIconClick}>✖</CloseButton>
         <CartItemsContainer>
@@ -144,7 +144,7 @@ const CartContainer = styled.div`
   transition: transform 0.3s ease-in-out;
   z-index: 1500;
   overflow-y: auto;
-  transform: ${({ isVisible }) => (isVisible ? "translateX(0)" : "translateX(100%)")};
+  transform: ${({ $isVisible }) => ($isVisible ? "translateX(0)" : "translateX(100%)")};
 
   @media (max-width: 768px) {
     width: 80%;

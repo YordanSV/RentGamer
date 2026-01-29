@@ -1,15 +1,16 @@
 -- =============================================
--- Script de creación de Base de Datos RentGamer
--- SQL Server / Azure SQL Database
+-- Script de limpieza y creación de Base de Datos RentGamer
+-- Elimina restricciones conflictivas primero
 -- =============================================
 
--- Crear base de datos (si no existe)
--- CREATE DATABASE RentGamer;
--- GO
+-- Eliminar FKs conflictivas si existen
+IF OBJECT_ID('dbo.Reviews', 'U') IS NOT NULL AND EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK_Reviews_Games')
+    ALTER TABLE dbo.Reviews DROP CONSTRAINT FK_Reviews_Games;
 
--- USE RentGamer;
--- GO
+IF OBJECT_ID('dbo.Reviews', 'U') IS NOT NULL AND EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = 'FK_Reviews_Users')
+    ALTER TABLE dbo.Reviews DROP CONSTRAINT FK_Reviews_Users;
 
+-- Ahora ejecutar el schema completo
 -- =============================================
 -- Tabla: Categories
 -- =============================================
@@ -312,5 +313,3 @@ GO
 PRINT '=============================================';
 PRINT 'Base de datos RentGamer creada exitosamente';
 PRINT '=============================================';
-
-
