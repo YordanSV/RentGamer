@@ -29,9 +29,9 @@ const ShopPage = () => {
     );
   }
 
-  // La API devuelve { success: true, data: [...] }
-  // useApi pone response.data en 'data', que ya es { success: true, data: [...] }
-  const games = data?.data || [];
+  // useApi ya extrae la data del response { success: true, data: [...] }
+  // Por lo tanto, 'data' directamente contiene el array de juegos
+  const games = data || [];
 
   return (
     <div className="shop-container">
