@@ -11,30 +11,14 @@ const allowedOrigins = [
   process.env.FRONTEND_URL, // Variable de entorno configurable
 ].filter(Boolean); // Elimina valores undefined/null
 
+// Configuración CORS simplificada - permitir todo
 const corsConfig = {
-  origin: function (origin, callback) {
-    // Permitir requests sin origin (como Postman, curl, etc.)
-    if (!origin) {
-      console.log('[CORS] Request sin origin header - PERMITIDO');
-      return callback(null, true);
-    }
-
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      console.log('[CORS] Origin PERMITIDO:', origin);
-      callback(null, true);
-    } else {
-      console.log('[CORS] Origin BLOQUEADO:', origin);
-      console.log('[CORS] Orígenes permitidos:', allowedOrigins);
-      callback(new Error('No permitido por CORS'));
-    }
-  },
+  origin: '*', // Permitir CUALQUIER origen
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
-  exposedHeaders: ['Content-Length', 'X-Request-Id'],
-  credentials: true,
+  credentials: false, // Deshabilitado para evitar conflictos
   preflightContinue: false,
   optionsSuccessStatus: 204,
-  maxAge: 86400, // 24 horas
 };
 
 // Para desarrollo local, permitir localhost

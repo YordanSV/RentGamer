@@ -18,11 +18,11 @@ console.log('[API Client] Usando API URL:', API_URL);
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
   baseURL: API_URL,
-  timeout: 15000,
+  timeout: 30000, // 30 segundos
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Necesario para CORS
+  withCredentials: false, // Deshabilitado
 });
 
 // Interceptor para requests (añadir autenticación, validar, etc.)
