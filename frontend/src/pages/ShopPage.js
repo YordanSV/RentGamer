@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import CategoryCarousel from '../components/shop/CategoryCarousel';
 import useApi from '../hooks/useApi';
 import gameApi from '../api/gameApi';
 import './shopPage.css';
 
 const ShopPage = () => {
-  const { data, loading, error } = useApi(() => gameApi.getAllGames());
+  // Usar useMemo para evitar crear la función en cada render
+  const fetchGames = useMemo(() => gameApi.getAllGames, []);
+  const { data, loading, error } = useApi(fetchGames);
 
   if (loading) {
     return (
