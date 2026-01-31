@@ -12,9 +12,10 @@ import axios from 'axios';
 
 // Obtener URL base de la API desde variables de entorno
 // Fallback a localhost:8080 para desarrollo local
+// En producción, usar ruta relativa '' para aprovechar proxy de Azure Static Web Apps
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
-console.log('[API Client] Usando API URL:', API_URL);
+console.log('[API Client] Usando API URL:', API_URL || '(ruta relativa - proxy)');
 
 // Crear instancia de axios con configuración base
 const apiClient = axios.create({
@@ -23,7 +24,8 @@ const apiClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  withCredentials: true, // Necesario para CORS con credentials
+  // withCredentials NO es necesario con proxy en mismo origen
+  withCredentials: false,
 });
 
 // Interceptor para requests (añadir autenticación, validar, etc.)
