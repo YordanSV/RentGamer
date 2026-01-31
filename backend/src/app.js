@@ -14,6 +14,10 @@ const app = express();
 
 // Middleware globales
 app.use(cors(corsConfig));
+
+// Manejar preflight requests explícitamente
+app.options('*', cors(corsConfig));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
