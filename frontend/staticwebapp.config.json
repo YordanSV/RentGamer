@@ -1,18 +1,12 @@
 {
   "navigationFallback": {
     "rewrite": "/index.html",
-    "exclude": ["/images/*.{png,jpg,gif,ico,svg}", "/static/*", "/api/*"]
+    "exclude": ["/images/*.{png,jpg,gif,ico,svg}", "/static/*"]
   },
   "routes": [
     {
       "route": "/api/*",
-      "allowedRoles": ["anonymous"],
-      "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"]
-    },
-    {
-      "route": "/*",
-      "serveFile": "/index.html",
-      "statusCode": 200
+      "allowedRoles": ["anonymous"]
     }
   ],
   "responseOverrides": {
