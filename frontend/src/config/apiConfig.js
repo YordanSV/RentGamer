@@ -16,7 +16,7 @@ const config = {
     debug: true,
   },
   production: {
-    apiUrl: process.env.REACT_APP_API_URL || 'https://tu-backend-azure.azurewebsites.net',
+    apiUrl: process.env.REACT_APP_API_URL || 'https://rentgamer-api-d5hzc6gahsc7ecaj.eastus2-01.azurewebsites.net',
     blobStorageUrl: process.env.REACT_APP_BLOB_STORAGE_URL || 'https://rentgamerstorage.blob.core.windows.net',
     timeout: 15000,
     debug: false,
