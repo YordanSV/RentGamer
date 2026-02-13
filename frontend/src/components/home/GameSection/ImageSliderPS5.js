@@ -30,7 +30,7 @@ const ImageSlider = ({ images }) => {
                     key={index}
                     src={image}
                     alt="Sliding images"
-                    fade={fade && currentImageIndex === index}
+                    $fade={fade && currentImageIndex === index}
                     style={{ opacity: currentImageIndex === index ? 1 : 0 }}
                 />
             ))}
@@ -83,7 +83,7 @@ const SliderImage = styled.img`
   top: 0;
   left: 0;
   opacity: 0;
-  animation: ${props => (props.fade ? fadeIn : fadeOut)} 1s forwards;
+  animation: ${props => (props.$fade ? fadeIn : fadeOut)} 1s forwards;
 
     @media (max-width: 1px) {
     height: 1px; /* Permite que la altura se ajuste automáticamente */

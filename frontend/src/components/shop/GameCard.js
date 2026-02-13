@@ -1,22 +1,80 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import anime from 'animejs';
 import styled from 'styled-components';
 import Modal from './Modal';
 import { useCart } from "./CartContext"; // Importamos el contexto
+import { getImageUrl } from '../../config/apiConfig';
 
 
 
 const GameCard = ({ game }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { addToCart } = useCart(); // Obtenemos el carrito y la función
+  const cardRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useEffect(() => {
+    // Animación de entrada con Intersection Observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            anime({
+              targets: cardRef.current,
+              translateY: [50, 0],
+              opacity: [0, 1],
+              duration: 800,
+              easing: 'easeOutExpo'
+            });
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleMouseEnter = () => {
+    anime({
+      targets: imageRef.current,
+      scale: 1.1,
+      duration: 300,
+      easing: 'easeOutQuad'
+    });
+  };
+
+  const handleMouseLeave = () => {
+    anime({
+      targets: imageRef.current,
+      scale: 1,
+      duration: 300,
+      easing: 'easeOutQuad'
+    });
+  };
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
 
+  // Transformar ruta de imagen local a URL de Blob Storage en producción
+  const imageUrl = game.image.startsWith('/img-games/') 
+    ? getImageUrl(game.image.replace('/img-games/', ''))
+    : game.image;
+
   return (
     <>
-      <Card>
+      <Card 
+        ref={cardRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <ImageContainer>
-          <Image src={game.image} alt={game.name} />
+          <Image ref={imageRef} src={imageUrl} alt={game.name} />
         </ImageContainer>
         <Content>
           <Title>{game.name}</Title>
@@ -40,17 +98,38 @@ export default GameCard;
 
 
 const Card = styled.div`
-  background: #001020;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(145deg, #001020 0%, #001a35 100%);
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  transition: transform 0.2s;
+  transition: all 0.3s ease;
   width: 400px;
   margin: 20px;
   padding: 10px;
+  border: 1px solid rgba(0, 123, 255, 0.1);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 123, 255, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+  }
+
+  &:hover::before {
+    opacity: 1;
+  }
 
   &:hover {
-    transform: scale(1.05);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 123, 255, 0.3);
+    border-color: rgba(0, 123, 255, 0.5);
   }
 
   @media (max-width: 768px) {
@@ -93,17 +172,47 @@ const ButtonContainer = styled.div`
 `;
 
 const Button = styled.button`
-  padding: 10px 15px;
+  padding: 12px 20px;
   font-size: 1em;
+  font-weight: 600;
   color: white;
-  background-color: #007bff;
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   flex: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
 
   &:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 123, 255, 0.5);
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.4);
   }
 
   @media (max-width: 768px) {

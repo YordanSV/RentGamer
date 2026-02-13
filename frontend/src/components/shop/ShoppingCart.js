@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import anime from 'animejs';
 import styled from 'styled-components';
 import { useCart } from "./CartContext";
 
@@ -6,6 +7,7 @@ const ShoppingCart = ({ onCheckout }) => {
   const { cart, removeFromCart } = useCart();
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
+  const cartIconRef = useRef(null);
 
   // Cerrar carrito si se hace clic fuera o en el icono
   useEffect(() => {
@@ -30,8 +32,21 @@ const ShoppingCart = ({ onCheckout }) => {
     };
   }, [isCartVisible]);
 
+  // Animación del ícono cuando se agrega un item
+  useEffect(() => {
+    if (cart.length > 0 && cartIconRef.current) {
+      anime({
+        targets: cartIconRef.current,
+        scale: [1, 1.3, 1],
+        rotate: [0, 10, -10, 0],
+        duration: 500,
+        easing: 'easeInOutQuad'
+      });
+    }
+  }, [cart.length]);
+
   const handleCartIconClick = () => {
-    setIsCartVisible((prev) => !prev); // Alternar visibilidad
+    setIsCartVisible((prev) => !prev);
   };
 
   const amount = cart.length;
@@ -40,7 +55,7 @@ const ShoppingCart = ({ onCheckout }) => {
   return (
     <>
       {/* Icono del carrito */}
-      <CartIconContainer className="cart-icon" onClick={handleCartIconClick}>
+      <CartIconContainer ref={cartIconRef} className="cart-icon" onClick={handleCartIconClick}>
         🛒
         {cart.length > 0 && <CartCount>{cart.length}</CartCount>}
       </CartIconContainer>
