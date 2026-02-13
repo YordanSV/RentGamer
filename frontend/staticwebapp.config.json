@@ -3,7 +3,14 @@
     "rewrite": "/index.html",
     "exclude": ["/images/*.{png,jpg,gif,ico,svg}", "/static/*"]
   },
-  "routes": [],
+  "routes": [
+    {
+      "route": "/*",
+      "headers": {
+        "Content-Security-Policy": "frame-ancestors 'self' http://localhost:3000 http://localhost:3001 http://127.0.0.1:3000"
+      }
+    }
+  ],
   "responseOverrides": {
     "404": {
       "rewrite": "/index.html",
