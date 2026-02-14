@@ -109,6 +109,8 @@ const Card = styled.div`
   padding: 10px;
   border: 1px solid rgba(0, 123, 255, 0.1);
   position: relative;
+  display: flex;
+  flex-direction: column;
 
   &::before {
     content: '';
@@ -139,31 +141,53 @@ const Card = styled.div`
   }
 
   @media (max-width: 768px) {
-    max-width: 100%;
+    max-width: 320px;
     margin: 10px auto;
   }
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 100%;
+  height: 220px;
   overflow: hidden;
+
+  @media (max-width: 1024px) {
+    height: 200px;
+  }
+
+  @media (max-width: 768px) {
+    height: 190px;
+  }
+
+  @media (max-width: 480px) {
+    height: 170px;
+  }
 `;
 
 const Image = styled.img`
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  background-color: #0a1428;
 `;
 
 const Content = styled.div`
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 `;
 
 const Title = styled.h2`
   font-size: 1.2em;
   margin: 0 0 10px;
   text-align: center;
+  line-height: 1.2;
+  min-height: 1.2em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 `;
 
 const ButtonContainer = styled.div`

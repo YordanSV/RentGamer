@@ -102,7 +102,7 @@ const Modal = ({ game, onClose }) => {
         <img 
           src={imageUrl} 
           alt={game.name} 
-          style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }} 
+          style={{ width: '100%', maxHeight: '400px', objectFit: 'contain', backgroundColor: '#0a1428', borderRadius: '8px', padding: '10px', boxSizing: 'border-box' }} 
         />
         <p>{game.description}</p>
         <CloseButton onClick={handleClose}>Cerrar</CloseButton>

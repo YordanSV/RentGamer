@@ -24,7 +24,9 @@ const CategoryCarousel = ({ games }) => {
       {Object.keys(gamesByCategory).map(category => (
         <CarouselContainer key={category}>
           <CategoryTitle>{category}</CategoryTitle>
-          <GameCarousel key={category} games={gamesByCategory[category]} />
+          <CarouselInner>
+            <GameCarousel key={category} games={gamesByCategory[category]} />
+          </CarouselInner>
         </CarouselContainer>
       ))}
     </div>
@@ -37,9 +39,18 @@ export default CategoryCarousel;
 
 
 const CarouselContainer = styled.div`
-  width: 87%;
-  margin: auto;
-  margin-bottom: 40px;
+  width: 100%;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+`;
+
+const CarouselInner = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
 `;
 
 const CategoryTitle = styled.h2`
