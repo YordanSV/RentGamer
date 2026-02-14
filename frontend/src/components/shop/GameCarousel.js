@@ -7,12 +7,30 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 const StyledSlider = styled(Slider)`
+  .slick-list {
+    margin: 0 -8px;
+  }
+
+  .slick-slide {
+    padding: 0 8px;
+  }
+
   .slick-dots li button:before {
     color: #7b7b7b; /* Cambia esto al color que desees */
   }
 
   .slick-dots li.slick-active button:before {
     color: white; /* Cambia esto al color que desees para el dot activo */
+  }
+
+  @media (max-width: 768px) {
+    .slick-list {
+      margin: 0 -6px;
+    }
+
+    .slick-slide {
+      padding: 0 6px;
+    }
   }
 `;
 
@@ -22,11 +40,14 @@ const settings = {
   speed: 500,
   slidesToShow: 3,
   slidesToScroll: 1,
+  adaptiveHeight: true,
+  swipeToSlide: true,
+  arrows: true,
   responsive: [
     {
       breakpoint: 1024,
       settings: {
-        slidesToShow: 3,
+        slidesToShow: 2,
         slidesToScroll: 1,
         infinite: true,
         dots: true
@@ -35,16 +56,17 @@ const settings = {
     {
       breakpoint: 600,
       settings: {
-        slidesToShow: 2,
+        slidesToShow: 1,
         slidesToScroll: 1,
-        initialSlide: 2
+        arrows: false
       }
     },
     {
       breakpoint: 480,
       settings: {
         slidesToShow: 1,
-        slidesToScroll: 1
+        slidesToScroll: 1,
+        arrows: false
       }
     }
   ]

@@ -103,8 +103,9 @@ const Card = styled.div`
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   transition: all 0.3s ease;
-  width: 400px;
-  margin: 20px;
+  width: 100%;
+  max-width: 420px;
+  margin: 16px auto;
   padding: 10px;
   border: 1px solid rgba(0, 123, 255, 0.1);
   position: relative;
@@ -132,9 +133,14 @@ const Card = styled.div`
     border-color: rgba(0, 123, 255, 0.5);
   }
 
+  @media (max-width: 1024px) {
+    max-width: 360px;
+    margin: 12px auto;
+  }
+
   @media (max-width: 768px) {
-    width: 80%;
-    margin: 10px 10px;
+    max-width: 100%;
+    margin: 10px auto;
   }
 `;
 
