@@ -44,7 +44,19 @@ const CarouselContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 16px;
+  padding: 0;
+
+  @media (max-width: 600px) {
+    padding: 0;
+  }
+
+  @media (max-width: 480px) {
+    padding: 0;
+  }
+
+  @media (max-width: 360px) {
+    padding: 0;
+  }
 `;
 
 const CarouselInner = styled.div`
@@ -56,4 +68,5 @@ const CarouselInner = styled.div`
 const CategoryTitle = styled.h2`
   margin: 20px 0;
   text-align: center;
+  padding: 0 10px;
 `;

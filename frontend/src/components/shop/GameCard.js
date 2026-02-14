@@ -106,7 +106,7 @@ const Card = styled.div`
   width: 100%;
   max-width: 420px;
   margin: 16px auto;
-  padding: 10px;
+  padding: 8px;
   border: 1px solid rgba(0, 123, 255, 0.1);
   position: relative;
   display: flex;
@@ -141,26 +141,47 @@ const Card = styled.div`
   }
 
   @media (max-width: 768px) {
+    max-width: 340px;
+    margin: 10px auto;
+  }
+
+  @media (max-width: 600px) {
     max-width: 320px;
     margin: 10px auto;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 300px;
+    margin: 8px auto;
+    padding: 6px;
+  }
+
+  @media (max-width: 360px) {
+    max-width: 280px;
+    margin: 6px auto;
+    padding: 5px;
   }
 `;
 
 const ImageContainer = styled.div`
   width: 100%;
-  height: 220px;
+  height: 300px;
   overflow: hidden;
 
   @media (max-width: 1024px) {
-    height: 200px;
+    height: 270px;
   }
 
   @media (max-width: 768px) {
-    height: 190px;
+    height: 240px;
   }
 
   @media (max-width: 480px) {
-    height: 170px;
+    height: 180px;
+  }
+
+  @media (max-width: 360px) {
+    height: 150px;
   }
 `;
 
@@ -172,15 +193,25 @@ const Image = styled.img`
 `;
 
 const Content = styled.div`
-  padding: 20px;
+  padding: 15px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+
+  @media (max-width: 480px) {
+    padding: 12px;
+    gap: 4px;
+  }
+
+  @media (max-width: 360px) {
+    padding: 10px;
+    gap: 3px;
+  }
 `;
 
 const Title = styled.h2`
-  font-size: 1.2em;
-  margin: 0 0 10px;
+  font-size: 1.1em;
+  margin: 0 0 6px;
   text-align: center;
   line-height: 1.2;
   min-height: 1.2em;
@@ -188,16 +219,29 @@ const Title = styled.h2`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media (max-width: 480px) {
+    font-size: 0.95em;
+    margin: 0 0 4px;
+  }
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  gap: 10px; /* Espacio entre los botones */
+  gap: 10px;
   margin-top: 10px;
+  width: 100%;
 
   @media (max-width: 768px) {
     flex-direction: column;
+    gap: 8px;
+  }
+
+  @media (max-width: 480px) {
+    gap: 6px;
+    margin-top: 8px;
   }
 `;
 
@@ -247,6 +291,13 @@ const Button = styled.button`
 
   @media (max-width: 768px) {
     width: 100%;
-    margin: 5px 0;
+    margin: 0;
+    padding: 10px 16px;
+    font-size: 0.95em;
+  }
+
+  @media (max-width: 480px) {
+    padding: 9px 12px;
+    font-size: 0.9em;
   }
 `;
