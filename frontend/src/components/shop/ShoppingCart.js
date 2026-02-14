@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import anime from 'animejs';
 import styled from 'styled-components';
 import { useCart } from "./CartContext";
@@ -8,6 +9,7 @@ const ShoppingCart = ({ onCheckout }) => {
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
   const cartIconRef = useRef(null);
+  const bodyOverflowRef = useRef(null);
 
   // Cerrar carrito si se hace clic fuera o en el icono
   useEffect(() => {
@@ -32,6 +34,22 @@ const ShoppingCart = ({ onCheckout }) => {
     };
   }, [isCartVisible]);
 
+  // Bloquear el scroll del body cuando el carrito está abierto
+  useEffect(() => {
+    if (isCartVisible) {
+      bodyOverflowRef.current = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+    } else if (bodyOverflowRef.current !== null) {
+      document.body.style.overflow = bodyOverflowRef.current;
+    }
+
+    return () => {
+      if (bodyOverflowRef.current !== null) {
+        document.body.style.overflow = bodyOverflowRef.current;
+      }
+    };
+  }, [isCartVisible]);
+
   // Animación del ícono cuando se agrega un item
   useEffect(() => {
     if (cart.length > 0 && cartIconRef.current) {
@@ -52,7 +70,7 @@ const ShoppingCart = ({ onCheckout }) => {
   const amount = cart.length;
   const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
 
-  return (
+  const cartUi = (
     <>
       {/* Icono del carrito */}
       <CartIconContainer ref={cartIconRef} className="cart-icon" onClick={handleCartIconClick}>
@@ -83,18 +101,22 @@ const ShoppingCart = ({ onCheckout }) => {
             <EmptyCart>El carrito está vacío</EmptyCart>
           )}
         </CartItemsContainer>
-        <Total>
-          <span>Total:</span>
-          <span>${total}</span>
-        </Total>
-        <Total>
-          <span>Cantidad:</span>
-          <span>{amount}</span>
-        </Total>
-        <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
+        <CartFooter>
+          <Total>
+            <span>Total:</span>
+            <span>${total}</span>
+          </Total>
+          <Total>
+            <span>Cantidad:</span>
+            <span>{amount}</span>
+          </Total>
+          <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
+        </CartFooter>
       </CartContainer>
     </>
   );
+
+  return createPortal(cartUi, document.body);
 };
 
 export default ShoppingCart;
@@ -154,12 +176,17 @@ const CartContainer = styled.div`
   width: 400px;
   height: 100%;
   background: #001020;
+  background-color: #001020;
+  background-image: none;
+  opacity: 1;
+  isolation: isolate;
   box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-  padding: 20px;
+  padding: 20px 20px 44px;
   transition: transform 0.3s ease-in-out;
   z-index: 1500;
-  overflow-y: auto;
   transform: ${({ $isVisible }) => ($isVisible ? "translateX(0)" : "translateX(100%)")};
+  display: flex;
+  flex-direction: column;
 
   @media (max-width: 768px) {
     width: 80%;
@@ -185,8 +212,9 @@ const CartHeader = styled.h2`
 `;
 
 const CartItemsContainer = styled.div`
-  max-height: 65vh;
   overflow-y: auto;
+  flex: 1;
+  min-height: 0;
 
   &::-webkit-scrollbar {
     width: 8px;
@@ -271,6 +299,11 @@ const Total = styled.div`
   color: white;
 `;
 
+const CartFooter = styled.div`
+  margin-top: auto;
+  padding-bottom: 18px;
+`;
+
 const CheckoutButton = styled.button`
   width: 100%;
   padding: 10px;
@@ -278,6 +311,8 @@ const CheckoutButton = styled.button`
   background-color: #007bff;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: calc(env(safe-area-inset-bottom, 0px) + 6px);
   &:hover {
     background-color: #0056b3;
   }

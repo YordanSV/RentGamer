@@ -18,28 +18,29 @@
   
   .text-content {
     position: absolute;
-    top: 60%;
+    top: 55%;
     left: 10%;
     transform: translate(0, -50%);
     text-align: left;
-    padding: 20px;
+    padding: clamp(10px, 2vw, 20px);
     border-radius: 15px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: min(90%, 620px);
+    width: min(92%, 40rem);
+    gap: clamp(6px, 1.2vw, 12px);
   }
   
   .animated-title {
     color: white;
-    font-size: 3.5rem;
+    font-size: clamp(1.6rem, 3.2vw, 3.5rem);
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
     font-weight: bold;
   }
   
   .subtitle {
-    font-size: 2.3rem;
-    margin: 10px 0;
+    font-size: clamp(0.9rem, 2vw, 2.3rem);
+    margin: 0;
     text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
   }
   
@@ -47,8 +48,8 @@
     border: 2px solid #5fb3ff;
     background: linear-gradient(135deg, #007bff 0%, #0056b3 60%, #003d82 100%);
     color: white;
-    padding: clamp(4px, 0.8vw, 6px) clamp(8px, 2.6vw, 12px);
-    font-size: clamp(0.68rem, 1.2vw, 0.8rem);
+    padding: clamp(6px, 1vw, 10px) clamp(12px, 2.2vw, 18px);
+    font-size: clamp(0.7rem, 1.1vw, 0.9rem);
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, border-color 0.25s ease, background-position 0.6s ease;
     border-radius: 30px;
@@ -121,35 +122,13 @@
   
   /* Estilos para dispositivos móviles */
   @media (max-width: 768px) {
-    .animated-title {
-      font-size: 1rem;
-    }
-  
-    .subtitle {
-      font-size: 0.5rem;
-      margin: 0;
-    }
-  
-    .learn-more-button {
-      padding: 5px 10px;
-      font-size: 0.62rem;
-    }
-  
     .text-content {
-      top: 55%;
+      top: 58%;
       left: 8%;
-      padding: 16px;
     }
 
     .cover-image img {
       height: 100%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .learn-more-button {
-      padding: 4px 8px;
-      font-size: 0.58rem;
     }
   }
 
@@ -160,9 +139,8 @@
     }
 
     .text-content {
-      top: 54%;
+      top: 60%;
       left: 6%;
-      padding: 12px;
     }
   }
   
