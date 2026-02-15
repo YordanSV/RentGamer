@@ -1,13 +1,11 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import CategoryCarousel from '../components/shop/CategoryCarousel';
-import useApi from '../hooks/useApi';
-import gameApi from '../api/gameApi';
+import { useGames } from '../contexts/GamesContext';
 import './shopPage.css';
 
 const ShopPage = () => {
-  // Usar useMemo para evitar crear la función en cada render
-  const fetchGames = useMemo(() => gameApi.getAllGames, []);
-  const { data, loading, error } = useApi(fetchGames);
+  // Usar el contexto de juegos que ya precargó los datos
+  const { games, loading, error } = useGames();
 
   if (loading) {
     return (
@@ -30,10 +28,6 @@ const ShopPage = () => {
       </div>
     );
   }
-
-  // useApi ya extrae la data del response { success: true, data: [...] }
-  // Por lo tanto, 'data' directamente contiene el array de juegos
-  const games = data || [];
 
   return (
     <div className="shop-container">

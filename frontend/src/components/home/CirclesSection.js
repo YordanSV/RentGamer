@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import gameApi from '../../api/gameApi';
+import { useGames } from '../../contexts/GamesContext';
 
 // Define styled components
 const Section = styled.section`
@@ -83,20 +83,12 @@ const Button = styled.button`
 
 
 const CirclesSection = () => {
-  const [data, setData] = useState('')
+  const [data, setData] = useState('');
+  const { games } = useGames();
 
-  async function handleClick() {
-    try {
-      const result = await gameApi.getAllGames();
-      if (result.success) {
-        // Si necesitas mostrar algo específico de los datos
-        setData(result.data?.length || '');
-      } else {
-        console.error('Error al obtener datos:', result.error);
-      }
-    } catch (error) {
-      console.error('Error Fetching data: ', error);
-    }
+  function handleClick() {
+    // Usar los datos ya precargados
+    setData(games?.length || 0);
   }
 
   return (

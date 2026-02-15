@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import useApi from '../../hooks/useApi';
-import gameApi from '../../api/gameApi';
+import { useGames } from '../../contexts/GamesContext';
 
 const GameDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { data, loading, error } = useApi(() => gameApi.getGameById(id), [id]);
+  const { games, loading, error } = useGames();
+
+  // Buscar el juego en los datos precargados
+  const game = useMemo(() => {
+    return games.find(g => g.id === parseInt(id));
+  }, [games, id]);
 
   if (loading) {
     return (
@@ -25,10 +29,6 @@ const GameDetails = () => {
       </DetailsContainer>
     );
   }
-
-  // La API devuelve { success: true, data: {...} }
-  // useApi pone response.data en 'data', que ya es { success: true, data: {...} }
-  const game = data?.data;
 
   if (!game) {
     return (

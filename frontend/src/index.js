@@ -4,15 +4,18 @@ import './index.css';
 
 //import { CartProvider } from "./contexts/CartContext"; // Importamos el provider
 import { CartProvider } from "./components/shop/CartContext";
+import { GamesProvider } from "./contexts/GamesContext";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CartProvider>
-      <App />
-    </CartProvider>
+    <GamesProvider>
+      <CartProvider>
+        <App />
+      </CartProvider>
+    </GamesProvider>
   </React.StrictMode>
 );
 
