@@ -110,7 +110,7 @@ const ShoppingCart = ({ onCheckout }) => {
             <span>Cantidad:</span>
             <span>{amount}</span>
           </Total>
-          <CheckoutButton onClick={onCheckout}>Pagar</CheckoutButton>
+          <CheckoutButton onClick={() => { /* No action */ }}>Pagar</CheckoutButton>
         </CartFooter>
       </CartContainer>
     </>
