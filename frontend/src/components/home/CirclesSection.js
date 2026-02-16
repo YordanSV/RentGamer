@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { useGames } from '../../contexts/GamesContext';
 
 // Define styled components
 const Section = styled.section`
