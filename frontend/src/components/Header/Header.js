@@ -7,6 +7,11 @@ import ShoppingCart from '../shop/ShoppingCart';
 
 export default function Header() {
   const headerRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   useEffect(() => {
     anime({
@@ -21,10 +26,15 @@ export default function Header() {
   return (
     <header ref={headerRef} className='header'>
       <Logo />
-      <Nav />
+      <Nav isOpen={isMenuOpen} />
       <ShoppingCart
         onCheckout={() => console.log('Se ha pagado')}
       />
+      <div className="menu-toggle" onClick={toggleMenu}>
+        <div className="dot"></div>
+        <div className="dot"></div>
+        <div className="dot"></div>
+      </div>
     </header>
   )
 }

@@ -2,22 +2,49 @@ import React, { useEffect, useRef } from 'react';
 import anime from 'animejs';
 import styled from "styled-components";
 
+// Contenedor principal de la sección
+const SectionContainer = styled.div`
+  text-align: center;
+  position: relative;
+  padding-top: 170px;
+  
+  @media (max-width: 768px) {
+    padding-top: 100px;
+  }
+  
+  @media (max-width: 480px) {
+    padding-top: 75px;
+  }
+`;
+
 // Estilos para la imagen del control
 const LogoImage = styled.img`
   display: block;
-  margin: 0 auto;
-  position: relative;
-  left: 7%;
-  top: 101px; /* Ajusta este valor si es necesario */
-  height: 200px; /* Tamaño predeterminado */
+  position: absolute;
+  left: 50%;
+  top: 85px;
+  transform: translateX(-50%);
+  height: 200px;
   width: auto;
+  z-index: 5;
 
   /* Adaptabilidad para móviles */
   @media (max-width: 768px) {
-    height: 90px; /* Reduce el tamaño en pantallas más pequeñas */
-    top: 37px; /* Ajusta la posición */
-    left: 35%;
+    height: 120px;
+    top: 45px;
   }
+  
+  @media (max-width: 480px) {
+    height: 90px;
+    top: 35px;
+  }
+`;
+
+const Title = styled.h3`
+  margin-top: 0px;
+  position: relative;
+  z-index: 10;
+  background: transparent;
 `;
 
 const InfoSection = () => {
@@ -76,9 +103,9 @@ const InfoSection = () => {
   }, []);
 
   return (
-    <div ref={sectionRef} className="info-section" id="info-section" style={{ textAlign: "center", position: "relative" }}>
+    <SectionContainer ref={sectionRef} className="info-section" id="info-section">
       <LogoImage ref={logoRef} src="/control.png" alt="RentGamer" />
-      <h3 ref={titleRef} style={{ marginTop: "-10px" }}>Descubre lo que RentGamer tiene para ti</h3> 
+      <Title ref={titleRef}>Descubre lo que RentGamer tiene para ti</Title> 
       <p ref={textRef}>
         En <strong>RentGamer</strong>, llevamos la pasión por los videojuegos al siguiente nivel. 
         Te ofrecemos el mejor servicio de <strong>alquiler de videojuegos</strong> en todo el país, con una 
@@ -89,7 +116,7 @@ const InfoSection = () => {
         ✅ Alquila fácil y rápido desde la<br /> 
         comodidad de tu hogar. <br /><br />
       </p>
-    </div>
+    </SectionContainer>
   );
 };
 
