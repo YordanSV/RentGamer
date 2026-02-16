@@ -7,7 +7,7 @@
     {
       "route": "/*",
       "headers": {
-        "Content-Security-Policy": "frame-ancestors 'self' http://localhost:3000 http://localhost:3001 http://127.0.0.1:3000 https://portafolio-yordansv.netlify.app"
+        "Content-Security-Policy": "frame-ancestors 'self' http://localhost:3000 http://localhost:3001 http://127.0.0.1:3000 https://portafolio-yordansv.netlify.app/programmer https://portafolio-yordansv.netlify.app https://portafolio-yordansv.netlify.app/data-engineer"
       }
     }
 
