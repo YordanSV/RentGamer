@@ -50,11 +50,69 @@ export default function CoverImage() {
 
   }, []);
 
-  const scrollToContent = () => {
+  const scrollToContent = (e) => {
+    // Prevenir comportamiento por defecto y propagación
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    
     const contentSection = document.getElementById('info-section');
     if (contentSection) {
-      contentSection.scrollIntoView({ behavior: 'smooth' });
+      // Primero, reseteamos las animaciones eliminando y reconstruyendo el contenido
+      const logo = contentSection.querySelector('img');
+      const title = contentSection.querySelector('h3');
+      const text = contentSection.querySelector('p');
+      
+      if (logo && title && text) {
+        // Resetear estados iniciales
+        anime.set([logo, title, text], {
+          opacity: 0
+        });
+        
+        // Scroll suave a la sección
+        contentSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Lanzar animaciones después de un breve delay
+        setTimeout(() => {
+          // Animación del logo con rotación
+          anime({
+            targets: logo,
+            rotate: [360, 0],
+            scale: [0, 1],
+            opacity: [0, 1],
+            duration: 1500,
+            easing: 'easeOutElastic(1, .6)'
+          });
+
+          // Animación del título
+          anime({
+            targets: title,
+            translateX: [-100, 0],
+            opacity: [0, 1],
+            duration: 1000,
+            delay: 300,
+            easing: 'easeOutExpo'
+          });
+
+          // Animación del texto
+          anime({
+            targets: text,
+            translateY: [50, 0],
+            opacity: [0, 1],
+            duration: 1200,
+            delay: 600,
+            easing: 'easeOutExpo'
+          });
+        }, 500);
+      } else {
+        contentSection.scrollIntoView({ behavior: 'smooth' });
+      }
     }
+  };
+
+  const handleTouchEnd = (e) => {
+    scrollToContent(e);
   };
 
   return (
@@ -63,7 +121,12 @@ export default function CoverImage() {
       <div className="text-content">
         <h1 ref={titleRef} className="animated-title">Juega sin límites</h1>
         <p ref={subtitleRef} className="subtitle">La mejor experiencia de alquiler de videojuegos</p>
-        <button ref={buttonRef} className="learn-more-button" onClick={scrollToContent}>
+        <button 
+          ref={buttonRef} 
+          className="learn-more-button" 
+          onClick={scrollToContent}
+          onTouchEnd={handleTouchEnd}
+        >
           Saber más
         </button>
       </div>

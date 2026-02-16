@@ -29,6 +29,12 @@
     align-items: flex-start;
     width: min(92%, 40rem);
     gap: clamp(6px, 1.2vw, 12px);
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .text-content > * {
+    pointer-events: auto;
   }
   
   .animated-title {
@@ -69,6 +75,12 @@
     background-size: 200% 200%;
     background-position: 0% 50%;
     animation: learn-more-glow 3.5s ease-in-out infinite;
+    /* Asegurar que sea táctil en móviles */
+    -webkit-tap-highlight-color: rgba(0, 123, 255, 0.3);
+    touch-action: manipulation;
+    user-select: none;
+    z-index: 20;
+    pointer-events: auto;
   }
 
   .learn-more-button::before {
@@ -98,6 +110,14 @@
   .learn-more-button:active {
     transform: translateY(0);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.35);
+  }
+
+  /* Efecto táctil para móviles */
+  @media (hover: none) and (pointer: coarse) {
+    .learn-more-button:active {
+      transform: scale(0.98);
+      box-shadow: 0 6px 18px rgba(0, 123, 255, 0.4);
+    }
   }
 
   .learn-more-button:focus-visible {
