@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { useGames } from '../../contexts/GamesContext';
 
@@ -85,11 +86,7 @@ const Button = styled.button`
 const CirclesSection = () => {
   const [data, setData] = useState('');
   const { games } = useGames();
-
-  function handleClick() {
-    // Usar los datos ya precargados
-    setData(games?.length || 0);
-  }
+  const navigate = useNavigate();
 
   return (
     <Section>
@@ -98,15 +95,15 @@ const CirclesSection = () => {
           <Circle>
             <Image src="/rent.png" alt="Imagen 1" />
           </Circle>
-          <Title>{data} Reserva</Title>
-          <Button onClick={handleClick}>Saber más</Button>
+          <Title>Reserva</Title>
+          <Button onClick={() => { navigate('/booking'); window.scrollTo(0, 0); }}>Saber más</Button>
         </CircleContainer>
         <CircleContainer>
           <Circle>
             <Image src="/playing.jpg" alt="Imagen 2" />
           </Circle>
           <Title>Planes</Title>
-          <Button>Saber más</Button>
+          <Button onClick={() => { navigate('/subscription'); window.scrollTo(0, 0); }}>Saber más</Button>
         </CircleContainer>
       </Row>
     </Section>

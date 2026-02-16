@@ -1,3 +1,9 @@
+@media (min-width: 600px) and (max-width: 1024px) {
+  .info-section {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
 
 body {
   background: linear-gradient(to bottom, #02376c, #001020); /* Fondo azul oscuro con un gradiente */
@@ -45,42 +51,50 @@ main {
   font-size: 1.2rem;
 }
 
+
 .menu-toggle {
-    display: none; /* Ocultar el icono de hamburguesa en pantallas grandes */
-    cursor: pointer;
-    padding-right: 20px;
+  display: none;
+  cursor: pointer;
+  padding-right: 20px;
+  z-index: 2001;
 }
-
-.menu-toggle div {
-    width: 25px;
-    height: 3px;
-    background-color: #ffffff;
-    margin: 5px 0;
-    transition: transform 0.3s ease-in-out;
+.menu-toggle .bar {
+  width: 28px;
+  height: 4px;
+  background-color: #fff;
+  margin: 5px 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  transition: transform 0.3s, opacity 0.3s;
 }
-
+.menu-toggle.open .bar:nth-child(1) {
+  transform: rotate(-45deg) translate(-6px, 7px);
+}
+.menu-toggle.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.menu-toggle.open .bar:nth-child(3) {
+  transform: rotate(45deg) translate(-6px, -7px);
+}
 
 .nav-active .nav-links {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    background-color: #f2f2f2;
-    width: 200px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.1);
-    z-index: 1;
-    background: linear-gradient(to bottom, #001f3f, #001020); /* Fondo azul oscuro con un gradiente */
-}
-
-.nav-active .menu-toggle div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-}
-
-.nav-active .menu-toggle div:nth-child(2) {
-    opacity: 0;
-}
-
-.nav-active .menu-toggle div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70vw;
+  max-width: 320px;
+  height: 100vh;
+  background: linear-gradient(to bottom, #001f3f, #001020);
+  z-index: 2000;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 80px;
+  padding-left: 32px;
+  gap: 2rem;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.15);
+  transition: width 0.3s;
 }
 
 .info-section {
@@ -89,73 +103,68 @@ main {
   padding-bottom: 40px;
 }
 
+
 .info-section h2 {
-  font-size: 2rem; /* Usa rem para un tamaño de fuente relativo */
+  font-size: clamp(1.1rem, 3vw, 2rem);
   margin-bottom: 10px;
 }
 
 .info-section h3 {
-  font-size: 3rem; /* Usa rem para un tamaño de fuente relativo */
+  font-size: clamp(1.3rem, 5vw, 3rem);
   margin-bottom: 20px;
 }
 
 .info-section p {
-  font-size: 1.5rem; /* Usa rem para un tamaño de fuente relativo */
+  font-size: clamp(0.9rem, 2.5vw, 1.5rem);
   max-width: 850px;
   margin: 0 auto;
 }
 
 
 
+
 @media (max-width: 768px) {
   .logo {
     justify-content: left;
-    max-height: 20px; /* Ajuste del tamaño del logo para móviles */
+    max-height: 20px;
   }
-  .nav{
-    width: 1000px;
+  .nav-links {
+    display: none;
   }
-    .nav-links {
-        display: none; /* Ocultar el menú de navegación en pantallas pequeñas */
-        padding-left: 10%;
-        /* padding-right: 50%; */
-        left: 50%;
-        right: 0px;
-    }
-    .nav-links li a{
-      margin: 0%;
-      font-size: 1rem;
-      text-align: center;
-    }
-    .nav-links li{
-      margin-top: 5%;
-    }
-    .menu-toggle {
-        display: block; /* Mostrar el icono de hamburguesa en pantallas pequeñas */
-        margin-right: 50px; /* Espacio desde el borde derecho */
-        padding-bottom: 10%;
-    }
-
-    .info-section {
-      text-align: center;
-      padding: 20px 20px;
-    }
-    .info-section h3 {
-      font-size: 1.1rem; /* Usa rem para un tamaño de fuente relativo */
-    }
-    
-    .info-section p {
-      font-size: 0.8rem; /* Usa rem para un tamaño de fuente relativo */
-    }
-
-
-    main {
-      padding-top: 48px; /* 🔹 Evita que el header lo cubra */
-    }
-    .header {
-      padding-top: 2%; /* 🔹 Evita que el header lo cubra */
-      height: 45px; /* Ajusta la altura del header */
-    }
+  .nav-active .nav-links {
+    display: flex;
+  }
+  .menu-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    margin: 0;
+    height: 28px;
+    width: 28px;
+    z-index: 2001;
+    background: transparent;
+  }
+  .menu-toggle .bar {
+    width: 24px;
+    height: 3px;
+    margin: 3px 0;
+  }
+  main {
+    padding-top: 55px;
+  }
+  .header {
+    padding-top: 0;
+    height: 55px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    z-index: 1100;
+  }
 }
 
   

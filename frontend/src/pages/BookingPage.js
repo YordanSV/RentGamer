@@ -1,55 +1,67 @@
-import React, { useState } from 'react';
-import { FaCalendarAlt, FaGamepad, FaTruck, FaShieldAlt, FaClock, FaCheckCircle } from 'react-icons/fa';
+
+import React, { useState, useMemo } from 'react';
+import { FaCalendarAlt, FaGamepad, FaTruck, FaShieldAlt, FaClock, FaCheckCircle, FaSearch } from 'react-icons/fa';
 import './bookingPage.css';
+import { useGames } from '../contexts/GamesContext';
+import { useCart } from '../contexts/CartContext';
+
+const MIN_RENTAL_DAYS = 30;
 
 const BookingPage = () => {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    gameTitle: '',
-    startDate: '',
-    endDate: '',
-    platform: '',
-    address: '',
-    city: '',
-    zipCode: '',
-    notes: ''
-  });
-
+  const { games } = useGames();
+  const { addToCart } = useCart();
+  const [search, setSearch] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedGame, setSelectedGame] = useState(null);
+  const [startDate, setStartDate] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [showGameDropdown, setShowGameDropdown] = useState(false);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }));
-  };
+  // Filtrar categorías únicas
+  const categories = useMemo(() => {
+    const cats = games.map(g => g.category_name || g.category || 'Sin categoría');
+    return Array.from(new Set(cats));
+  }, [games]);
 
-  const handleSubmit = (e) => {
+  // Filtrar juegos por búsqueda y categoría
+  const filteredGames = useMemo(() => {
+    let filtered = games;
+    if (selectedCategory) {
+      filtered = filtered.filter(g => (g.category_name || g.category) === selectedCategory);
+    }
+    if (search) {
+      filtered = filtered.filter(g => g.name.toLowerCase().includes(search.toLowerCase()));
+    }
+    return filtered;
+  }, [games, search, selectedCategory]);
+
+  // Calcular fecha mínima de fin
+  const minEndDate = useMemo(() => {
+    if (!startDate) return '';
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + MIN_RENTAL_DAYS - 1);
+    return d.toISOString().split('T')[0];
+  }, [startDate]);
+
+  const handleAddToCart = (e) => {
     e.preventDefault();
-    // Aquí iría la lógica para enviar a la API
-    console.log('Formulario enviado:', formData);
+    if (!selectedGame || !startDate) return;
+    const endDate = minEndDate;
+    addToCart({
+      ...selectedGame,
+      startDate,
+      endDate,
+      rentalType: 'mensual',
+      quantity: 1
+    });
     setSubmitted(true);
-    
-    // Resetear formulario después de 3 segundos
     setTimeout(() => {
       setSubmitted(false);
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        gameTitle: '',
-        startDate: '',
-        endDate: '',
-        platform: '',
-        address: '',
-        city: '',
-        zipCode: '',
-        notes: ''
-      });
-    }, 3000);
+      setSelectedGame(null);
+      setStartDate('');
+      setSearch('');
+      setSelectedCategory('');
+    }, 2500);
   };
 
   return (
@@ -99,185 +111,191 @@ const BookingPage = () => {
       <section className="booking-section">
         <div className="container">
           <div className="booking-content">
-            {/* Form */}
             <div className="booking-form-container">
-              <h2>Formulario de Reserva</h2>
+              <h2>Reserva mensual de juegos</h2>
               {submitted ? (
                 <div className="success-message">
                   <FaCheckCircle className="success-icon" />
-                  <h3>¡Reserva Recibida!</h3>
-                  <p>Tu reserva ha sido enviada exitosamente. Pronto nos pondremos en contacto para confirmar los detalles.</p>
+                  <h3>¡Juego agregado al carrito!</h3>
+                  <p>Tu reserva mensual fue agregada al carrito. Puedes pagar desde el carrito.</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="booking-form">
-                  {/* Personal Information */}
-                  <fieldset className="form-group">
-                    <legend>Información Personal</legend>
+                <form onSubmit={handleAddToCart} className="booking-form">
+                  <div className="form-group">
+                    <h3 className="form-title">Buscar o seleccionar juego</h3>
                     <div className="form-row">
-                      <div className="form-field">
-                        <label htmlFor="fullName">Nombre Completo *</label>
-                        <input
-                          type="text"
-                          id="fullName"
-                          name="fullName"
-                          value={formData.fullName}
-                          onChange={handleChange}
-                          required
-                          placeholder="Tu nombre completo"
-                        />
+                      <div className="form-field" style={{ flex: 2, position: 'relative' }}>
+                        <label htmlFor="search">Buscar juego</label>
+                        <div style={{ display: 'flex', alignItems: 'center', position: 'relative' }}>
+                          <input
+                            type="text"
+                            id="search"
+                            name="search"
+                            value={search}
+                            onChange={e => setSearch(e.target.value)}
+                            placeholder="Escribe el nombre del juego..."
+                            autoComplete="off"
+                            style={{ zIndex: 2 }}
+                          />
+                          <FaSearch style={{ marginLeft: 8, color: '#007bff', zIndex: 2 }} />
+                          {search && filteredGames.length > 0 && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '100%',
+                              left: 0,
+                              right: 0,
+                              background: '#1a1a2e',
+                              border: '1px solid #007bff',
+                              borderRadius: '0 0 8px 8px',
+                              maxHeight: 220,
+                              overflowY: 'auto',
+                              zIndex: 10,
+                              boxShadow: '0 8px 24px rgba(0,123,255,0.15)'
+                            }}>
+                              {filteredGames.slice(0, 8).map(game => (
+                                <div
+                                  key={game.id}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: '8px 12px',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid #223',
+                                    background: selectedGame && selectedGame.id === game.id ? '#003d82' : 'transparent'
+                                  }}
+                                  onClick={() => {
+                                    setSelectedGame(game);
+                                    setSearch(game.name);
+                                  }}
+                                >
+                                  <img src={game.image} alt={game.name} style={{ width: 38, height: 38, objectFit: 'contain', borderRadius: 6, marginRight: 12, background: '#222' }} />
+                                  <span style={{ color: '#e0e0e0', fontWeight: 500 }}>{game.name}</span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
                       </div>
-                      <div className="form-field">
-                        <label htmlFor="email">Correo Electrónico *</label>
-                        <input
-                          type="email"
-                          id="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleChange}
-                          required
-                          placeholder="tu@email.com"
-                        />
-                      </div>
-                    </div>
-                    <div className="form-field">
-                      <label htmlFor="phone">Teléfono *</label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        placeholder="+1 (555) 000-0000"
-                      />
-                    </div>
-                  </fieldset>
-
-                  {/* Game Information */}
-                  <fieldset className="form-group">
-                    <legend>Información del Juego</legend>
-                    <div className="form-row">
-                      <div className="form-field">
-                        <label htmlFor="gameTitle">Título del Juego *</label>
-                        <input
-                          type="text"
-                          id="gameTitle"
-                          name="gameTitle"
-                          value={formData.gameTitle}
-                          onChange={handleChange}
-                          required
-                          placeholder="Ej: The Legend of Zelda"
-                        />
-                      </div>
-                      <div className="form-field">
-                        <label htmlFor="platform">Plataforma *</label>
+                      <div className="form-field" style={{ flex: 1 }}>
+                        <label htmlFor="category">Categoría</label>
                         <select
-                          id="platform"
-                          name="platform"
-                          value={formData.platform}
-                          onChange={handleChange}
-                          required
+                          id="category"
+                          name="category"
+                          value={selectedCategory}
+                          onChange={e => setSelectedCategory(e.target.value)}
                         >
-                          <option value="">Selecciona una plataforma</option>
-                          <option value="PS5">PlayStation 5</option>
-                          <option value="XSX">Xbox Series X</option>
-                          <option value="Nintendo">Nintendo Switch</option>
-                          <option value="PC">PC</option>
-                          <option value="PS4">PlayStation 4</option>
-                          <option value="XOne">Xbox One</option>
+                          <option value="">Todas</option>
+                          {categories.map(cat => (
+                            <option key={cat} value={cat}>{cat}</option>
+                          ))}
                         </select>
                       </div>
                     </div>
-                  </fieldset>
-
-                  {/* Rental Period */}
-                  <fieldset className="form-group">
-                    <legend>Período de Renta</legend>
+                    <div className="form-row">
+                      <div className="form-field" style={{ width: '100%' }}>
+                        <label htmlFor="game">Selecciona el juego</label>
+                        <div style={{ position: 'relative' }}>
+                          <div
+                            style={{
+                              display: 'flex',
+                              alignItems: 'center',
+                              background: '#1a1a2e',
+                              border: '2px solid #3a4a5e',
+                              borderRadius: 8,
+                              padding: '0 0 0 0',
+                              minHeight: 48,
+                              cursor: 'pointer',
+                              position: 'relative',
+                              zIndex: 2
+                            }}
+                            onClick={e => {
+                              setShowGameDropdown(v => !v);
+                            }}
+                            tabIndex={0}
+                            onBlur={() => setTimeout(() => setShowGameDropdown(false), 150)}
+                          >
+                            {selectedGame ? (
+                              <>
+                                <img src={selectedGame.image} alt={selectedGame.name} style={{ width: 38, height: 38, objectFit: 'contain', borderRadius: 6, margin: '4px 12px 4px 8px', background: '#222' }} />
+                                <span style={{ color: '#e0e0e0', fontWeight: 500 }}>{selectedGame.name} <span style={{ color: '#007bff', fontWeight: 400, fontSize: 13 }}>- {selectedGame.category}</span></span>
+                              </>
+                            ) : (
+                              <span style={{ color: '#888', padding: 12 }}>-- Elige un juego --</span>
+                            )}
+                            <span style={{ marginLeft: 'auto', color: '#007bff', fontSize: 18, padding: '0 12px' }}>▼</span>
+                          </div>
+                          {showGameDropdown && (
+                            <div style={{
+                              position: 'absolute',
+                              top: '100%',
+                              left: 0,
+                              right: 0,
+                              background: '#1a1a2e',
+                              border: '1px solid #007bff',
+                              borderRadius: '0 0 8px 8px',
+                              maxHeight: 220,
+                              overflowY: 'auto',
+                              zIndex: 10,
+                              boxShadow: '0 8px 24px rgba(0,123,255,0.15)'
+                            }}>
+                              {filteredGames.length === 0 && (
+                                <div style={{ color: '#888', padding: 12 }}>No hay juegos</div>
+                              )}
+                              {filteredGames.map(game => (
+                                <div
+                                  key={game.id}
+                                  style={{
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    padding: '8px 12px',
+                                    cursor: 'pointer',
+                                    borderBottom: '1px solid #223',
+                                    background: selectedGame && selectedGame.id === game.id ? '#003d82' : 'transparent'
+                                  }}
+                                  onClick={() => {
+                                    setSelectedGame(game);
+                                    setShowGameDropdown(false);
+                                  }}
+                                >
+                                  <img src={game.image} alt={game.name} style={{ width: 38, height: 38, objectFit: 'contain', borderRadius: 6, marginRight: 12, background: '#222' }} />
+                                  <span style={{ color: '#e0e0e0', fontWeight: 500 }}>{game.name} <span style={{ color: '#007bff', fontWeight: 400, fontSize: 13 }}>- {game.category}</span></span>
+                                </div>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        {/* Estado para mostrar el dropdown personalizado */}
+                        {/* ...al inicio del componente: const [showGameDropdown, setShowGameDropdown] = useState(false); */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="form-group">
+                    <h3 className="form-title">Período de renta mensual</h3>
                     <div className="form-row">
                       <div className="form-field">
-                        <label htmlFor="startDate">Fecha de Inicio *</label>
+                        <label htmlFor="startDate">Fecha de inicio *</label>
                         <input
                           type="date"
                           id="startDate"
                           name="startDate"
-                          value={formData.startDate}
-                          onChange={handleChange}
+                          value={startDate}
+                          onChange={e => setStartDate(e.target.value)}
                           required
                         />
                       </div>
                       <div className="form-field">
-                        <label htmlFor="endDate">Fecha de Fin *</label>
+                        <label htmlFor="endDate">Fecha de fin (mínimo 1 mes)</label>
                         <input
                           type="date"
                           id="endDate"
                           name="endDate"
-                          value={formData.endDate}
-                          onChange={handleChange}
-                          required
+                          value={minEndDate}
+                          readOnly
                         />
                       </div>
                     </div>
-                  </fieldset>
-
-                  {/* Delivery Address */}
-                  <fieldset className="form-group">
-                    <legend>Información de Contacto Adicional</legend>
-                    <div className="form-field">
-                      <label htmlFor="address">País *</label>
-                      <input
-                        type="text"
-                        id="address"
-                        name="address"
-                        value={formData.address}
-                        onChange={handleChange}
-                        required
-                        placeholder="Tu país"
-                      />
-                    </div>
-                    <div className="form-row">
-                      <div className="form-field">
-                        <label htmlFor="city">Región/Estado *</label>
-                        <input
-                          type="text"
-                          id="city"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleChange}
-                          required
-                          placeholder="Tu región"
-                        />
-                      </div>
-                      <div className="form-field">
-                        <label htmlFor="zipCode">Código Postal (Opcional)</label>
-                        <input
-                          type="text"
-                          id="zipCode"
-                          name="zipCode"
-                          value={formData.zipCode}
-                          onChange={handleChange}
-                          placeholder="12345"
-                        />
-                      </div>
-                    </div>
-                  </fieldset>
-
-                  {/* Additional Notes */}
-                  <fieldset className="form-group">
-                    <legend>Observaciones Adicionales</legend>
-                    <div className="form-field">
-                      <label htmlFor="notes">Notas (Opcional)</label>
-                      <textarea
-                        id="notes"
-                        name="notes"
-                        value={formData.notes}
-                        onChange={handleChange}
-                        placeholder="Cuéntanos si hay algo especial que debamos saber..."
-                        rows="4"
-                      ></textarea>
-                    </div>
-                  </fieldset>
-
-                  <button type="submit" className="submit-button">Enviar Reserva</button>
+                  </div>
+                  <button type="submit" className="submit-button" disabled={!selectedGame || !startDate}>Agregar al carrito</button>
                 </form>
               )}
             </div>
@@ -290,11 +308,7 @@ const BookingPage = () => {
                 <h4>Seguro Incluido</h4>
                 <p>Protección total en cada renta sin costos adicionales</p>
               </div>
-              <div className="benefit">
-                <FaTruck className="benefit-icon" />
-                <h4>Sin Instalación</h4>
-                <p>Juega en streaming sin descargar ni instalar</p>
-              </div>
+              {/* Eliminado: Sin Instalación */}
               <div className="benefit">
                 <FaClock className="benefit-icon" />
                 <h4>Flexible</h4>
@@ -306,14 +320,7 @@ const BookingPage = () => {
                 <p>Miles de juegos disponibles en varias plataformas</p>
               </div>
               
-              <div className="pricing-info">
-                <h4>Precios por Día</h4>
-                <ul>
-                  <li>1-2 días: $5.99/día</li>
-                  <li>3-7 días: $4.99/día</li>
-                  <li>8+ días: $3.99/día</li>
-                </ul>
-              </div>
+              {/* Eliminado: Precios por Día */}
             </aside>
           </div>
         </div>
@@ -325,20 +332,20 @@ const BookingPage = () => {
           <h2>Preguntas Frecuentes</h2>
           <div className="faq-grid">
             <div className="faq-item">
-              <h4>¿Cuál es el período mínimo de renta?</h4>
-              <p>El período mínimo es de 1 día. Puedes acceder al juego durante el tiempo que necesites.</p>
+              <h4>¿Cuál es el período mínimo de alquiler?</h4>
+              <p>El período mínimo es de 1 mes. Todas las reservas se realizan por mes completo.</p>
             </div>
             <div className="faq-item">
-              <h4>¿Qué dispositivos puedo usar?</h4>
-              <p>Accede desde cualquier dispositivo: PC, consola, tablet o smartphone. Solo necesitas conexión a internet.</p>
+              <h4>¿Necesito registrarme para alquilar?</h4>
+              <p>Sí, debes iniciar sesión o registrarte antes de pagar tu reserva.</p>
             </div>
             <div className="faq-item">
-              <h4>¿Es inmediato el acceso?</h4>
-              <p>Sí, una vez confirmada tu reserva, tendrás acceso instantáneo al juego sin tiempos de espera.</p>
+              <h4>¿Cómo recibo el acceso a mi juego?</h4>
+              <p>Recibirás acceso digital al juego en tu cuenta después de completar el pago.</p>
             </div>
             <div className="faq-item">
-              <h4>¿Puedo cancelar mi reserva?</h4>
-              <p>Sí, puedes cancelar hasta 24 horas antes de la fecha de inicio sin penalización.</p>
+              <h4>¿Puedo alquilar más de un juego a la vez?</h4>
+              <p>Sí, puedes agregar varios juegos al carrito y alquilarlos juntos por mes.</p>
             </div>
           </div>
         </div>

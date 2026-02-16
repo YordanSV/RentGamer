@@ -3,7 +3,7 @@ const router = express.Router();
 const gameController = require('../controllers/gameController');
 const { validateGame, validateGameId } = require('../validators/gameValidator');
 
-// Aplicar validación de ID en rutas que lo requieren
+// Aplicar validación de ID
 router.param('id', validateGameId);
 
 // Rutas

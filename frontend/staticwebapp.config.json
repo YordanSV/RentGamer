@@ -7,9 +7,10 @@
     {
       "route": "/*",
       "headers": {
-        "Content-Security-Policy": "frame-ancestors 'self' http://localhost:3000 http://localhost:3001 http://127.0.0.1:3000"
+        "Content-Security-Policy": "frame-ancestors 'self' http://localhost:3000 http://localhost:3001 http://127.0.0.1:3000 https://portafolio-yordansv.netlify.app"
       }
     }
+
   ],
   "responseOverrides": {
     "404": {

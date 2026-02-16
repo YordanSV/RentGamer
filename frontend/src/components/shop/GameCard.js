@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import anime from 'animejs';
 import styled from 'styled-components';
 import Modal from './Modal';
-import { useCart } from "./CartContext"; // Importamos el contexto
+import { useCart } from "../../contexts/CartContext";
 import { getImageUrl } from '../../config/apiConfig';
 
 

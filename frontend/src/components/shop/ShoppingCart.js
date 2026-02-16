@@ -2,10 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import anime from 'animejs';
 import styled from 'styled-components';
-import { useCart } from "./CartContext";
+import { useCart } from "../../contexts/CartContext";
 
 const ShoppingCart = ({ onCheckout }) => {
-  const { cart, removeFromCart } = useCart();
+  const { cartItems, removeFromCart } = useCart();
   const [isCartVisible, setIsCartVisible] = useState(false);
   const cartRef = useRef(null);
   const cartIconRef = useRef(null);
@@ -52,7 +52,7 @@ const ShoppingCart = ({ onCheckout }) => {
 
   // Animación del ícono cuando se agrega un item
   useEffect(() => {
-    if (cart.length > 0 && cartIconRef.current) {
+    if (cartItems && cartItems.length > 0 && cartIconRef.current) {
       anime({
         targets: cartIconRef.current,
         scale: [1, 1.3, 1],
@@ -61,21 +61,21 @@ const ShoppingCart = ({ onCheckout }) => {
         easing: 'easeInOutQuad'
       });
     }
-  }, [cart.length]);
+  }, [cartItems?.length]);
 
   const handleCartIconClick = () => {
     setIsCartVisible((prev) => !prev);
   };
 
-  const amount = cart.length;
-  const total = cart.reduce((acc, item) => acc + (item.price || 0), 0);
+  const amount = cartItems ? cartItems.length : 0;
+  const total = cartItems ? cartItems.reduce((acc, item) => acc + (item.price || 0), 0) : 0;
 
   const cartUi = (
     <>
       {/* Icono del carrito */}
       <CartIconContainer ref={cartIconRef} className="cart-icon" onClick={handleCartIconClick}>
         🛒
-        {cart.length > 0 && <CartCount>{cart.length}</CartCount>}
+        {cartItems && cartItems.length > 0 && <CartCount>{cartItems.length}</CartCount>}
       </CartIconContainer>
 
       {/* Fondo oscuro cuando el carrito está abierto */}
@@ -86,8 +86,8 @@ const ShoppingCart = ({ onCheckout }) => {
         <CartHeader>CARRITO DE COMPRAS</CartHeader>
         <CloseButton onClick={handleCartIconClick}>✖</CloseButton>
         <CartItemsContainer>
-          {cart.length > 0 ? (
-            cart.map((item, index) => (
+          {cartItems && cartItems.length > 0 ? (
+            cartItems.map((item, index) => (
               <CartItem key={index}>
                 <Image src={item.image} alt={item.name} />
                 <ItemInfo>
@@ -152,7 +152,7 @@ const CartCount = styled.span`
   position: absolute;
   top: -5px;
   right: -10px;
-  background: red;
+  background: #007bff;
   color: white;
   font-size: 14px;
   border-radius: 50%;

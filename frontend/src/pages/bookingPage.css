@@ -1,3 +1,93 @@
+/* Títulos de sección del formulario (sin legend) */
+.form-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #007bff;
+  margin-bottom: 18px;
+  margin-top: 0;
+  text-align: left;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .form-title {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+}
+/* Mejoras responsivas para móviles */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 6px;
+  }
+  .booking-hero {
+    padding: 40px 6px;
+  }
+  .how-it-works {
+    padding: 40px 6px;
+  }
+  .steps-container {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .step {
+    padding: 12px;
+  }
+  .booking-section {
+    padding: 30px 6px;
+  }
+  .booking-content {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .booking-form-container h2 {
+    font-size: 1.1rem;
+  }
+  .form-group {
+    padding: 16px 6px 12px 6px;
+    border-radius: 10px;
+    margin-bottom: 18px;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    font-size: 0.98rem;
+    padding: 10px 8px;
+  }
+  .submit-button {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+  .booking-benefits {
+    gap: 12px;
+  }
+  .benefit {
+    padding: 12px;
+    border-radius: 8px;
+  }
+  .benefit h4 {
+    font-size: 1rem;
+  }
+  .benefit p {
+    font-size: 0.88rem;
+  }
+  .faq-section {
+    padding: 30px 6px;
+  }
+  .faq-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .faq-item {
+    padding: 12px;
+    border-radius: 8px;
+  }
+}
 /* Booking Page Styles */
 .booking-page {
   background: linear-gradient(to bottom, #02376c 0%, #001f3f 25%, #001428 50%, #000810 75%, #001020 100%);
@@ -58,13 +148,13 @@
   padding: 30px;
   background: linear-gradient(135deg, rgba(2, 55, 108, 0.7) 0%, rgba(0, 16, 32, 0.7) 100%);
   border-radius: 15px;
-  border-left: 4px solid #e94560;
+  border-left: 4px solid #007bff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .step:hover {
   transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(233, 69, 96, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
 }
 
 .step-number {
@@ -73,7 +163,7 @@
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: #e94560;
+  background: #007bff;
   color: white;
   border-radius: 50%;
   font-weight: bold;
@@ -83,7 +173,7 @@
 
 .step-icon {
   font-size: 2.5rem;
-  color: #e94560;
+  color: #007bff;
   margin-bottom: 15px;
 }
 
@@ -137,12 +227,41 @@
   border: 1px solid #1a3a52;
 }
 
+/* Corregido: solo una versión de .form-group legend, bloque cerrado correctamente */
 .form-group legend {
   font-size: 1.2rem;
   font-weight: 600;
-  color: #e94560;
-  padding: 0 10px;
-  margin-bottom: 20px;
+  color: #007bff;
+  margin-bottom: 0;
+  display: block;
+  width: auto;
+  box-sizing: border-box;
+  text-align: left;
+  line-height: 1.2;
+}
+
+@media (max-width: 600px) {
+  .form-group legend {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-group legend {
+    font-size: 1rem;
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+}
+
+@media (max-width: 600px) {
+  .form-group legend {
+    font-size: 1rem;
+    padding: 2px 8px;
+    top: 0.3em;
+    left: 4px;
+    border-radius: 5px;
+  }
 }
 
 .form-row {
@@ -186,8 +305,8 @@
 .form-field select:focus,
 .form-field textarea:focus {
   outline: none;
-  border-color: #e94560;
-  box-shadow: 0 0 10px rgba(233, 69, 96, 0.1);
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.1);
 }
 
 .form-field textarea {
@@ -196,8 +315,8 @@
 }
 
 /* Submit Button */
-.submit-button {
-  background: linear-gradient(135deg, #e94560 0%, #c91e4a 100%);
+ .submit-button {
+  background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
   color: white;
   border: none;
   padding: 15px 40px;
@@ -211,7 +330,7 @@
 
 .submit-button:hover {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(233, 69, 96, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 123, 255, 0.3);
 }
 
 .submit-button:active {
@@ -267,8 +386,16 @@
   background: #0f3460;
   padding: 20px;
   border-radius: 10px;
-  border-left: 4px solid #e94560;
-  transition: transform 0.3s ease;
+  border-left: 4px solid #007bff;
+.form-group {
+  background: #22345a;
+  border-radius: 16px;
+  padding: 30px 30px 20px 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 2px solid #22345a;
+  position: relative;
+}
 }
 
 .benefit:hover {
@@ -277,7 +404,7 @@
 
 .benefit-icon {
   font-size: 2rem;
-  color: #e94560;
+  color: #007bff;
   margin-bottom: 10px;
 }
 
@@ -298,11 +425,11 @@
   background: #16213e;
   padding: 20px;
   border-radius: 10px;
-  border: 2px solid #e94560;
+  border: 2px solid #007bff;
 }
 
 .pricing-info h4 {
-  color: #e94560;
+  color: #007bff;
   margin-bottom: 15px;
   font-size: 1.1rem;
 }
@@ -321,7 +448,7 @@
 
 .pricing-info li::before {
   content: "→";
-  color: #e94560;
+  color: #007bff;
   margin-right: 10px;
 }
 
@@ -348,11 +475,11 @@
   background: linear-gradient(135deg, rgba(2, 55, 108, 0.7) 0%, rgba(0, 16, 32, 0.7) 100%);
   padding: 25px;
   border-radius: 10px;
-  border-left: 4px solid #e94560;
+  border-left: 4px solid #007bff;
 }
 
 .faq-item h4 {
-  color: #e94560;
+  color: #007bff;
   margin-bottom: 12px;
   font-size: 1.1rem;
 }

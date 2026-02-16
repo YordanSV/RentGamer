@@ -1,13 +1,27 @@
+.subscription-root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   text-align: center;
   width: 85%;
   max-width: 1200px;
-  padding: 6%;
-  margin: 0 auto; /* 🔹 Asegura que el contenedor esté completamente centrado */
+  padding: 32px 0 0 0;
+  margin: 0 auto;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+}
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 18px;
+  margin-top: 60px;
+  color: #fff;
 }
 
 

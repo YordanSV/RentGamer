@@ -51,13 +51,15 @@ const PlanCard = ({ plan }) => {
 
 const SubscriptionPlans = () => {
   return (
-    <div className="container">
+    <div className="subscription-root">
+      <div className="container">
         <h1 className="title">Planes de Suscripción</h1>
         <div className="plans-container">
           {plans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} />
           ))}
         </div>
+      </div>
     </div>
   );
 };

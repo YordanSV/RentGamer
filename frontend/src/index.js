@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 
-//import { CartProvider } from "./contexts/CartContext"; // Importamos el provider
-import { CartProvider } from "./components/shop/CartContext";
+import { CartProvider } from "./contexts/CartContext";
 import { GamesProvider } from "./contexts/GamesContext";
 import App from './App';
 import reportWebVitals from './reportWebVitals';

@@ -31,7 +31,15 @@ export const GamesProvider = ({ children }) => {
         const result = await gameApi.getAllGames();
         
         if (result?.success) {
-          setGames(result.data || []);
+          const gamesData = result.data || [];
+          // Precargar imágenes en segundo plano
+          gamesData.forEach(game => {
+            if (game.image) {
+              const img = new window.Image();
+              img.src = game.image;
+            }
+          });
+          setGames(gamesData);
         } else {
           setError(result?.error || 'Error al cargar los juegos');
         }
