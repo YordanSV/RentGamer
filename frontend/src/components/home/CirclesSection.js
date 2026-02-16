@@ -83,12 +83,11 @@ const Button = styled.button`
 
 
 
+
 const CirclesSection = () => {
-  const [data, setData] = useState('');
-  const { games } = useGames();
   const navigate = useNavigate();
 
-  return (
+  return ( 
     <Section>
       <Row>
         <CircleContainer>

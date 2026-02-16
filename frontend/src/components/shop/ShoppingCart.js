@@ -61,7 +61,8 @@ const ShoppingCart = ({ onCheckout }) => {
         easing: 'easeInOutQuad'
       });
     }
-  }, [cartItems?.length]);
+
+  }, [cartItems]);
 
   const handleCartIconClick = () => {
     setIsCartVisible((prev) => !prev);
