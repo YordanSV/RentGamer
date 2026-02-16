@@ -7,7 +7,7 @@
     "404": { "rewrite": "/index.html", "statusCode": 200 }
   },
   "globalHeaders": {
-    "Content-Security-Policy": "default-src 'self' https: 'unsafe-eval' 'unsafe-inline'; object-src 'none'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https:; connect-src 'self' https: wss: https://rentgamer-api-d5hzc6gahsc7ecaj.eastus2-01.azurewebsites.net; frame-ancestors 'self' https://portafolio-yordansv.netlify.app http://localhost:5173 http://127.0.0.1:5173 http://localhost:3000 http://127.0.0.1:3000;",
+    "Content-Security-Policy": "frame-ancestors 'self' https://portafolio-yordansv.netlify.app;",
     "X-Content-Type-Options": "nosniff",
     "X-XSS-Protection": "1; mode=block"
   }
