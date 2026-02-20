@@ -1,6 +1,16 @@
 import React, { useEffect, useRef } from 'react';
 import anime from 'animejs';
 import styled from "styled-components";
+// Estilos responsivos para el texto
+const Text = styled.p`
+  font-size: 1.2rem;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 0.85rem;
+  }
+`;
 
 // Contenedor principal de la sección
 const SectionContainer = styled.div`
@@ -45,6 +55,13 @@ const Title = styled.h3`
   position: relative;
   z-index: 10;
   background: transparent;
+  font-size: 2.2rem;
+  @media (max-width: 768px) {
+    font-size: 1.5rem;
+  }
+  @media (max-width: 480px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const InfoSection = () => {
@@ -52,6 +69,7 @@ const InfoSection = () => {
   const titleRef = useRef(null);
   const textRef = useRef(null);
   const sectionRef = useRef(null);
+
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -106,7 +124,7 @@ const InfoSection = () => {
     <SectionContainer ref={sectionRef} className="info-section" id="info-section">
       <LogoImage ref={logoRef} src="/control.png" alt="RentGamer" />
       <Title ref={titleRef}>Descubre lo que RentGamer tiene para ti</Title> 
-      <p ref={textRef}>
+      <Text ref={textRef}>
         En <strong>RentGamer</strong>, llevamos la pasión por los videojuegos al siguiente nivel. 
         Te ofrecemos el mejor servicio de <strong>alquiler de videojuegos</strong> en todo el país, con una 
         <strong> amplia selección de títulos</strong> para que juegues sin gastar de más. 
@@ -115,7 +133,7 @@ const InfoSection = () => {
         ✅ Precios accesibles para todos.<br />
         ✅ Alquila fácil y rápido desde la<br /> 
         comodidad de tu hogar. <br /><br />
-      </p>
+      </Text>
     </SectionContainer>
   );
 };
