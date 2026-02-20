@@ -23,9 +23,23 @@ const gameService = {
       } else {
         console.log('[MICROSERVICIO] Respuesta recibida:', response.data);
       }
+      // Mapeo de categorías
+      const categoryMap = {
+        1: 'Acción',
+        2: 'Aventura',
+        3: 'Estrategia',
+        // Agrega más si tienes más categorías
+      };
+      // Agregar category_name a cada juego
+      const gamesWithCategory = Array.isArray(response.data)
+        ? response.data.map(game => ({
+            ...game,
+            category_name: categoryMap[game.categoryId] || 'Sin categoría'
+          }))
+        : response.data;
       return {
         success: true,
-        data: response.data,
+        data: gamesWithCategory,
       };
     } catch (error) {
       throw new Error(`Error al obtener juegos: ${error.message}`);
