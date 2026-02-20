@@ -3,7 +3,11 @@
  * Separa la lógica de negocio de los controladores
  */
 
+
 const Game = require('../models/Game');
+const axios = require('axios');
+const GAMES_API_URL = process.env.GAMES_API_URL || 'http://localhost:5000/api/games';
+console.log('GAMES_API_URL:', GAMES_API_URL);
 
 const gameService = {
   /**
@@ -11,10 +15,10 @@ const gameService = {
    */
   getAllGames: async () => {
     try {
-      const games = await Game.getAll();
+      const response = await axios.get(GAMES_API_URL);
       return {
         success: true,
-        data: games,
+        data: response.data,
       };
     } catch (error) {
       throw new Error(`Error al obtener juegos: ${error.message}`);
@@ -26,8 +30,8 @@ const gameService = {
    */
   getGameById: async (id) => {
     try {
-      const game = await Game.getById(id);
-      if (!game) {
+      const response = await axios.get(`${GAMES_API_URL}/${id}`);
+      if (!response.data) {
         return {
           success: false,
           message: 'Juego no encontrado',
@@ -35,7 +39,7 @@ const gameService = {
       }
       return {
         success: true,
-        data: game,
+        data: response.data,
       };
     } catch (error) {
       throw new Error(`Error al obtener el juego: ${error.message}`);
@@ -47,10 +51,10 @@ const gameService = {
    */
   createGame: async (gameData) => {
     try {
-      const newGame = await Game.create(gameData);
+      const response = await axios.post(GAMES_API_URL, gameData);
       return {
         success: true,
-        data: newGame,
+        data: response.data,
         message: 'Juego creado exitosamente',
       };
     } catch (error) {
@@ -63,8 +67,8 @@ const gameService = {
    */
   updateGame: async (id, gameData) => {
     try {
-      const result = await Game.update(id, gameData);
-      if (!result) {
+      const response = await axios.put(`${GAMES_API_URL}/${id}`, gameData);
+      if (!response.data) {
         return {
           success: false,
           message: 'Juego no encontrado',
@@ -72,7 +76,7 @@ const gameService = {
       }
       return {
         success: true,
-        data: result,
+        data: response.data,
         message: 'Juego actualizado exitosamente',
       };
     } catch (error) {
@@ -85,8 +89,8 @@ const gameService = {
    */
   deleteGame: async (id) => {
     try {
-      const result = await Game.delete(id);
-      if (result.affectedRows === 0) {
+      const response = await axios.delete(`${GAMES_API_URL}/${id}`);
+      if (!response.data) {
         return {
           success: false,
           message: 'Juego no encontrado',
@@ -94,13 +98,14 @@ const gameService = {
       }
       return {
         success: true,
+        data: response.data,
         message: 'Juego eliminado exitosamente',
       };
     } catch (error) {
       throw new Error(`Error al eliminar el juego: ${error.message}`);
     }
   },
-};
+
+}
 
 module.exports = gameService;
-

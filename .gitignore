@@ -28,6 +28,51 @@ node_modules/
 # misc
 .DS_Store
 
+# Visual Studio/.NET
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+.vs/
+*.dbmdl
+*.pdb
+*.cache
+*.dll
+*.exe
+*.app
+*.vspscc
+*.vssscc
+*.v12.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+*.pidb
+*.svclog
+*.scc
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Mac
+.DS_Store
+
+# Otros
+*.bak
+*.tmp
+*.swp
+*.swo
+*.orig
+
+# Logs adicionales
+backend/logs/
+backend-logs/
+*.log
+
 # Local environment overrides
 .env.local
 .env.development.local

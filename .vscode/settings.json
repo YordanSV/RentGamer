@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/208fe210-3f5d-4576-a6e1-378d3c7fa6ef/resourceGroups/RentGamer_group/providers/Microsoft.Web/sites/rentgamer-microservice-games",
+    "appService.deploySubpath": "microservice-games\\publish"
+}

@@ -1,0 +1,6 @@
+@microservice_games_HostAddress = http://localhost:5115
+
+GET {{microservice_games_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

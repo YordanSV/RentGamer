@@ -1,0 +1,26 @@
+
+1. Microservicio de Juegos (.NET)
+Se creó un microservicio ASP.NET Core Web API en la carpeta microservice-games.
+Se agregó un Dockerfile y se configuró para despliegue en Azure App Service.
+Se implementó el modelo Game para que coincida con la tabla SQL (id, name, category_id, price, image, description, stock, created_at, updated_at, is_active).
+Se creó el DbContext (GameDbContext) y se configuró Entity Framework Core para SQL Server.
+Se modificó GamesController para usar GameDbContext y acceder a la base de datos.
+Se configuró la cadena de conexión en Azure como variable de entorno ConnectionStrings:DefaultConnection.
+Se dejó una cadena de conexión dummy en appsettings.json para desarrollo.
+Se corrigió el registro de controladores en Program.cs.
+Se publicó y desplegó el microservicio en Azure.
+2. Backend principal (Node.js)
+Se modificó gameService.js para consumir el microservicio de Juegos por HTTP usando axios.
+Se agregó la importación de axios y la exportación correcta de gameService.
+Se definió GAMES_API_URL usando process.env o un valor por defecto.
+Se instaló axios con npm install axios.
+Se configuró la variable de entorno GAMES_API_URL en Azure y/o localmente.
+3. Configuración y pruebas
+Se verificó la existencia y estructura de la tabla Games en la base de datos SQL de Azure.
+Se revisaron y corrigieron errores de compilación y de integración.
+Se probaron los endpoints del microservicio y del backend principal, confirmando que los datos de juegos provienen de la base SQL a través del microservicio.
+4. Buenas prácticas aplicadas
+Variables sensibles solo en variables de entorno, no en appsettings.json.
+Separación de responsabilidades: backend principal consume microservicio, microservicio accede a la base de datos.
+Uso de Entity Framework Core para acceso a SQL Server.
+Uso de axios para comunicación HTTP entre servicios.
