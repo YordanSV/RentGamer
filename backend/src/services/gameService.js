@@ -16,6 +16,13 @@ const gameService = {
   getAllGames: async () => {
     try {
       const response = await axios.get(GAMES_API_URL);
+      // Log para comprobar que los datos vienen del microservicio
+      console.log('[MICROSERVICIO] URL consultada:', GAMES_API_URL);
+      if (Array.isArray(response.data)) {
+        console.log('[MICROSERVICIO] Primeros juegos recibidos:', response.data.slice(0, 2));
+      } else {
+        console.log('[MICROSERVICIO] Respuesta recibida:', response.data);
+      }
       return {
         success: true,
         data: response.data,
